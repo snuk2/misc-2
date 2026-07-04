@@ -1,0 +1,1 @@
+(((((((((((((((((((Orthoptera,(Blattodea)Dictyoptera)Polyneoptera,((Lepidoptera)Amphiesmenoptera)Endopterygota)Neoptera)Pterygota)Dicondylia)Insecta)Hexapoda)Pancrustacea)Mandibulata,((Araneae)Arachnida)Chelicerata)Arthropoda)Panarthropoda)Ecdysozoa)Protostomia)Bilateria)Eumetazoa)Metazoa)Opisthokonta)Eukaryota)cellular_organisms);
