@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Create backup on first run
+if [ ! -f wireworld-original.c.bak ]; then
+    cp wireworld-original.c wireworld-original.c.bak
+fi
+
+# Always restore from backup before testing
+cp wireworld-original.c.bak wireworld-original.c
+
+# Apply patches in numerical order (sorted)
+for patch_num in $(echo "$@" | tr ' ' '\n' | sort -n); do
+    if [ -f "patch.$patch_num" ]; then
+        patch -p0 -s wireworld-original.c < "patch.$patch_num" 2>/dev/null
+    fi
+done
+
+# Try to compile
+gcc -c wireworld-original.c >/dev/null 2>&1
+result=$?
+
+# Clean up
+rm -f wireworld-original.o
+
+# Restore original
+cp wireworld-original.c.bak wireworld-original.c
+
+# Return appropriate exit code
+if [ $result -ne 0 ]; then
+    exit 1
+else
+    exit 0
+fi
