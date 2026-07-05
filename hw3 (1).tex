@@ -1,0 +1,178 @@
+\documentclass[12pt]{hw}
+
+
+%====================================================================
+% IMPORTANT INFORMATION TO FILL OUT:
+%====================================================================
+\usepackage{amsthm}
+\newtheorem{definition}{Definition}
+\newcommand{\getr}{\ensuremath{{\overset{\$}{\leftarrow}}}\xspace}
+\newcommand{\Gen}{\ensuremath{{\sf Gen}}\xspace}
+\newcommand{\D}{\mathcal{D}}
+% ENTER YOUR NAME HERE:
+\renewcommand{\student}{ YOUR NAME HERE (uniqname here) }
+
+% LIST ALL COLLABORATORS HERE:
+\renewcommand{\collaborators}{Name/Exercise Number(s), Name/Exercise Numbers (s)}
+
+%====================================================================
+%====================================================================
+
+\setcounter{sheet}{3} % Homework number here
+
+\begin{document}
+
+\maketitle
+
+\begin{center} Due: Oct 10, 2024 (at 11:59 PM US Eastern Time) \\[10pt]
+  \hrule height 1pt
+\end{center}
+
+\toggletrue{answers}
+% \togglefalse{answers}
+
+\setcounter{MaxMatrixCols}{20} \setlength\parindent{0pt}
+
+% =============================================================================
+% =============================================================================
+
+
+% ===============================================
+% ===============================================
+
+
+% =============================================================================
+
+
+\begin{exercise}
+
+  \textbf{(20 points)} %
+  Let $F\colon \bit^n \times \bit^n \rightarrow \bit^n$ be pseudorandom function.
+  Show that each of the following MACs is insecure, even if used to
+  authenticate fixed-length
+  messages. (In each case $\skcgen$ outputs a uniform $k \in \bit^n$,
+  $n$ being even, and $\langle i \rangle$ denotes an $n/2$-bit binary
+  encoding of the integer $i$).
+  \begin{enumerate}[(a)]
+    \item To authenticate a message $m = m_1\| \cdots \| m_\ell$, where
+          $m_i \in \bit^n$, compute \\
+          $t := F_k(m_1)\oplus \cdots \oplus F_k(m_\ell)$.
+    \item To authenticate a message $m = m_1 \| \cdots \| m_\ell$, where
+          $m_i \in \bit^{n/2}$, compute \\
+          $t := F_k(\langle 1 \rangle \| m_1) \oplus \cdots \oplus
+            F_k(\langle \ell \rangle \| m_\ell)$.
+  \end{enumerate}
+\end{exercise}
+
+\begin{answer}
+  \begin{enumerate}[(a)]
+    \item First part.
+
+    \item Second part.
+
+  \end{enumerate}
+\end{answer}
+
+
+% =============================================================================
+
+
+\begin{exercise}
+  \textbf{(15 points)}
+  Let $F\colon \bit^n \times \bit^n \rightarrow \bit^n$ be a PRF. 
+  Consider the following\\ $\mac=(\macgen,\mactag,\macver)$ given by
+  \begin{itemize}
+    \item $\macgen(1^n)$: outputs a uniformly random key $k\gets\bit^n$.
+    \item $\mactag(k,m)$: given a message $m=m_1\|m_2\in\bit^{2n}$, 
+      where $|m_1|=|m_2|=n$, output the tag $t:=F_k(m_1)\| F_k(F_k(m_2))$.
+    \item $\macver(k,m,t)$: check whether $\mactag(k,m)=t$.
+  \end{itemize}
+  Is this MAC secure (existential unforgeabilty under chosen message attack)? Prove your answer either by giving a formal reduction
+  to $F$ being a PRF or by constructing a forger with non-negligible advantage
+  in the security game against $\mac$. 
+\end{exercise}
+
+\begin{answer} 
+Write answer here.
+\end{answer}
+
+
+% =============================================================================
+\begin{exercise} \textbf{(20 points)}
+  For each of the following hash functions $H$, determine whether it
+  is \emph{necessarily} collision resistant. If it is, describe and
+  analyze an appropriate reduction. If it's not, describe and analyze
+  a feasible attacker against the collision resistance of $H$.
+  
+  \begin{enumerate}[(a)]
+  \item $H^{s}(x) = H_1^{s}(x) \oplus H_2^{s}(x)$, where $\{H^s_1\}, \{H^s_2\}$ are both
+    collision-resistant hash functions families.
+  
+  \item $H^s(x) = \widetilde{H}^s(\widetilde{H}^s(x))$, where $\{\widetilde{H}^s\}$ is a collision-resistant hash
+    function family (that can support arbitrary length inputs).
+  \end{enumerate}
+
+\end{exercise}
+\begin{answer}
+Write Solution Here.
+\end{answer}
+\begin{exercise}
+\textbf{(15 points)}
+Recall the following definitions for MAC schemes.
+
+\begin{definition}[\bf{Existentially Unforgeable under Chosen Message}]
+    A MAC scheme $(\mathsf{Gen}, \mathsf{Mac}, \mathsf{Vrfy})$ is \emph{existentially unforgable under a chosen-message attack} if and only for every PPT adversary $\mathcal{A}$, 
+    there is a negligible function $\mathsf{negl}(\cdot)$ such that 
+for all $n \in \mathbb{N}$, $\Pr[\mathsf{Expt}_{\mathsf{EU}}^{\mathcal{A}}(1^n) = 1] \leq \mathsf{negl}(n)$.
+    \begin{mdframed}
+    
+    ${\bf \mathsf{Expt}_{\mathsf{EU}}^{\mathcal{A}}(1^n)}$.
+    
+    \begin{itemize}
+        \item $k \getr \Gen(1^n)$; 
+        \item $(m, t) \leftarrow \mathcal{A}^{{\sf MAC}_k(\cdot)}(1^n)$; (The adversary has oracle access to the MAC function parameterized with k to get tags of messages)
+        \item Output 1 if ${\sf Vrfy}(k,m,t) = 1$ and $m$ not queried by $\mathcal{A}$.
+    \end{itemize}
+    \end{mdframed}
+\end{definition}
+In words, the adversary is able to make queries to get tags for a polynomial amount of messages and then make a message tag pair itself that is not of a message previously queried.
+\begin{definition}[\bf{Strongly Existentially Unforgeable under Chosen Message}]
+    A MAC scheme $(\mathbf{Gen}, \mathbf{Mac}, \mathbf{Vrfy})$ is \emph{strongly existentially unforgable under a chosen-message attack} if and only for every PPT adversary $\mathcal{A}$, 
+    there is a negligible function $\mathsf{negl}(\cdot)$ such that 
+for all $n\in \mathbb{N}$, $\Pr[\mathsf{Expt}_{\mathsf{SEU}}^{\mathcal{A}}(1^n) = 1] \leq \mathsf{negl}(n)$.
+    
+    \begin{mdframed}
+    
+    ${\bf \mathsf{Expt}_{\mathsf{SEU}}^{\mathcal{A}}(1^n)}$.
+    
+    \begin{itemize}
+        \item $k \getr \Gen(1^n)$;
+        \item $(m, t) \leftarrow \mathcal{A}^{{\sf MAC}_k(\cdot)}(1^n)$; (The adversary has oracle access to the MAC function parameterized with k to get tags of messages)
+        \item Output 1 if ${\sf Vrfy}(k,m,t) = 1$ and $(m,t)$ is not a pair seen in the set of queries made by $\mathcal{A}$.
+    \end{itemize}
+    \end{mdframed}
+\end{definition}
+In words, the adversary is able to make queries to get tags for a polynomial amount of messages and then make a message tag pair itself that \textbf{can be a message previously queried, but the tag cannot be a tag associated with that message from a previous query.}\\
+
+Prove that if a MAC scheme $(\mathsf{Gen}, \mathsf{Mac}, \mathsf{Vrfy})$ is strongly existentially unforgable under a chosen-message attack, then it is existentially unforgable under a chosen-message attack.
+\end{exercise}
+\begin{answer}
+Write Solution Here.
+\end{answer}
+\begin{exercise} {\bf (30 points)}
+    Let $H\colon \bit^\ell \to \bit^n$ be a collision-resistant hash function,
+    where $\ell > n$, and $F\colon \keyspace \times \bit^n \to \bit^n$ be a PRF.
+    Show that the function $F'\colon \keyspace \times \bit^\ell \to \bit^n$
+    given by $F'_k(x) := F_k(H(x))$ is a PRF.  In practice, this construction
+    can produce a PRF with arbitrary-length inputs.
+    \smallskip
+
+    \emph{Hint: Consider the similarities and differences between this
+    construction and the hash-and-tag construction that we analyzed in lecture.}
+\end{exercise}
+    
+\begin{answer}
+Write Solution Here.
+\end{answer}
+% =============================================================================
+\end{document}

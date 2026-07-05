@@ -1,0 +1,140 @@
+# Collaboration Reflection
+
+
+# This file is your Collaboration Reflection template for the EECS 481
+# Homeworks. Please edit this file by answering each question in the space
+# provided or by uncommenting your response, then submit it to
+# Autograder.io. You will submit a fresh edit of this file for each HW. 
+
+# In each reflection, we ask you to describe how you approached
+# collaboration and correctness in the current assignment. 
+
+# Make sure you indicate which HW this reflection is for. For Q4, only
+# answer the question corresponding to that HW.
+
+# You must complete this file yourself, although you're welcome to discuss
+# your reflections with your partner if you worked with one. Each partner
+# must upload a separate reflection. 
+
+# You may submit multiple times. The most recent valid submission before
+# the deadline will be used.
+
+# Your reflection will be reviewed by a separate team from those grading
+# your code or written report. Nothing you say here will "incriminate" you
+# or make us think less of you or reduce your grade. 
+
+# ========== Begin Reflection ==========
+
+Q0. Which HW assignment is this reflection for? Uncomment the appropriate
+line. Leave the "Q0-x" part there: the autograder looks for that. 
+
+# Q0-1. HW1
+
+# Q0-2. HW2
+
+# Q0-3. HW3
+
+# Q0-4. HW4
+
+# Q0-5. HW5
+
+Q0-6. HW6-a
+
+# Q0-7. HW6-b
+
+
+Q1. Did you work with a fellow classmate on this assignment? 
+
+# Q1-a. Yes
+
+Q1-b. No
+
+# Q1-c. It's complicated, I'll explain here: <your answer here>
+
+If you did work with a fellow classmate: What tasks did the fellow classmate help with?  
+
+# Q2-a. <your answer here, leave the Q2-a at the start of the line for the autograder to see>
+
+Otherwise (if you didn't answer Q2-a): What tasks do you think a fellow classmate could have helped with?  
+
+Q2-b. A fellow classmate could have helped with researching potential project ideas on the web. I compiled a list of 5 or so good open-source GitHub repositories that had "socially good" impacts such as helping with filing taxes and a project maintaining an activism platform promoting social and ecological change. For each of these I had to think of the 3-5 key improvements that could be made, and with a partner that could have been a faster process. 
+
+Q3. Did you use any AI tools (e.g., ChatGPT, Copilot)? (Reminder: Using Free AI tools is permitted in EECS 481.)
+
+Q3-a. Yes
+
+# Q3-b. No
+
+# Q3-c. It's complicated, I'll explain here: <your answer here>
+
+If you did use AI: What tasks did the AI help with?  
+
+Q4-a. In this assignment AI helped with finding some potentially good open source projects for me to consider when compiling my list of projects. Specifically, since the requirements specified that for the use of AI in improvements, the project needed to approve of AI usage, so AI itself helped me filter through projects that accepted its usage and that did not, which made the process more efficient. Additionally, AI helped me draft the write up and format my sections to make them clear and concise to the reader. 
+
+Otherwise (if you didn't answer Q4-a): What tasks do you think AI tools could have helped with?  
+
+# Q4-b. <your answer here, leave the Q4-b at the start of the line for the autograder>
+
+Q5. Choose a component of the assignment that you turned in. (If possible, pick something that AI or a fellow classmate wrote, but that’s not required.) This could be code, a written report, or any other artifact. Describe the process by which you created the artifact.  
+
+Q5-a. For HW 6 part a I needed to show evidence of a task issue and the requirements surrounding it. After choosing my project, I went into the GitHub repository and found potential issues needed to be fixed. I pasted the issue and description into AI (this was ok since the project did not forbid the use of AI) and I asked for a summary of the issue and a good way to plan out the time frame to do the requirements in 1 month's time. I used the response in my written report and rewrote it to add specifications I wanted and make it more readable.  
+
+Q6. How did you decide to trust that artifact (from Q5) before your final submission? What did you do to check if it was correct?
+
+Q6-a. That portion of the write-up was assisted with AI, but I ensured to read over the full AI response, add anything that I thought was missing, remove requirements and time frame specifications that I did not need, and rewrote the section to make it flow better for the reader. By ensuring I did a thorough review and change of the AI response, I knew to trust the final artifact because it was something I wrote and reviewed. 
+
+# Some students aren't sure what counts as “checking if something is
+# correct.” Examples include: running tests, reading your work carefully,
+# stepping away and returning later, rubber duck debugging, searching
+# online, or using the autograder. This isn't an exhaustive list. We
+# encourage you to reflect honestly on what you did.
+
+# Only answer the final subsection relevant to the current HW.
+
+# For HW1c, did you work with a fellow classmate or use AI to help?  
+# How did you gain confidence in the result? Would you do it the same way again?  
+# What advice would you give to future students?
+
+# HW1. <your answer here>
+
+# For running AFL in HW2, did you work with a fellow classmate or use AI to help?   
+# How did you gain confidence in the result? Would you do it the same way again?  
+# What advice would you give to future students?
+
+# HW2. <your answer here>
+
+# For HW3a, did you work with a fellow classmate or use AI to help?   
+# How did you gain confidence in the result? Would you do it the same way again?  
+# What advice would you give to future students?
+
+# HW3. <your answer here>
+
+# For the HW4a report, did you work with a fellow classmate or use AI to help?  
+# How did you gain confidence in the result? Would you do it the same way again?  
+# What advice would you give to future students?
+
+# HW4. <your answer here>
+
+# For the HW5d report, did you work with a fellow classmate or use AI to help?   
+# How did you gain confidence in the result? Would you do it the same way again?  
+# What advice would you give to future students?
+
+# HW5. <your answer here> 
+
+# For the HW6a report, did you work with a fellow classmate or use AI to help?   
+# How did you gain confidence in the result? Would you do it the same way again?  
+# What advice would you give to future students?
+
+HW6-a. I used AI to help. In this report I mainly used AI to help me consider potential time distributions for each requirement in the fix I planned to implement as well as help me draft out requirements that I may have missed or not fully explained. By ensuring that the AI responses made sense and changing them where necessary, I was confident in the final report being a comprehensive outline of the fix I planned to implement and the explanation of the project. I think by using AI future students can benefit by practicing working with AI to draft reports and then editing those reports to match the exact content and tone you would like to portray in the report. I would recommend future students use AI like this to complete the report and gain the best result.  
+
+# For the HW6b report, did you work with a fellow classmate or use AI to help?  
+# How did you gain confidence in the result? Would you do it the same way again?  
+# What advice would you give to future students?
+
+# HW6-b. <your answer here> 
+
+# ========== End Reflection ==========
+
+# Save this file and submit it via Autograder.io before the deadline.
+# You may resubmit as often as needed before the deadline—only the most recent one counts.
+

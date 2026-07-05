@@ -1,0 +1,323 @@
+\documentclass[11pt,addpoints]{exam}
+\usepackage{fullpage}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{enumerate}
+\usepackage{listings}
+\usepackage[boxed]{algorithm}
+\usepackage[noend]{algpseudocode}
+
+\usepackage[basic, langfont=caps]{complexity}
+
+
+\algrenewcommand\algorithmicrequire{\textbf{Input:}}
+\algrenewcommand\algorithmicensure{\textbf{Output:}}
+
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usepackage[inline,shortlabels]{enumitem}
+\usetikzlibrary{automata, positioning, arrows}
+\usepackage{subcaption}
+
+
+% in order to compile this file you need to get 'header.tex' from
+% Canvas and change the line below to the appropriate file path
+\input{header}
+
+\newlang{\AnyHamPath}{AnyHamPath}
+\newlang{\VertCov}{VertexCover}
+\newlang{\SetCov}{SetCover}
+\newlang{\fSetCov}{$f$\text{-}SetCover}
+\newlang{\SubsetSum}{SubsetSum}
+\newlang{\Knapsack}{Knapsack}
+\newlang{\TSAT}{3SAT}
+\newlang{\FS}{FireStation}
+
+\newcommand{\NPcomplete}{\NP\text{-complete}}
+\newcommand{\NPhard}{\NP\text{-hard}}
+
+\newcommand{\hwnum}{9}
+\newcommand{\duedate}{April 3}
+
+\hwheader   % header for homework
+
+% Comment the following line in order to hide solutions.
+% Uncomment the line to show solutions written inside of
+% LaTeX solution environments like:
+%   \begin{solution}
+%     My solution.
+%   \end{solution}.
+\printanswers
+
+\begin{document}
+
+\hwpreface
+
+\pointsinmargin
+\pointpoints{pt}{pts}
+\bonuspointpoints{EC pt}{EC pts}
+\marginpointname{ \points}
+\marginbonuspointname{ \bonuspoints}
+
+% languages for reductions
+\newcommand{\atm}{L_{\text{ACC}}}
+
+% Approximation commands
+\newcommand{\OPT}{\textsf{OPT}}
+
+\algdef{SE}[SUBALG]{Indent}{EndIndent}{}{\algorithmicend\ }%
+\algtext*{Indent}
+\algtext*{EndIndent}
+
+\begin{questions}
+  \addtocounter{question}{-1}
+
+  \question[0] \textbf{Before you start; before you submit.}
+  
+    If applicable, state the name(s) and uniqname(s) of your collaborator(s).
+
+    \begin{solution}
+    
+    \end{solution}
+
+  \question[10] \textbf{Self assessment.}
+  
+  Carefully read and understand the posted solutions to the previous homework.
+  Identify one part for which your own solution has the most room for improvement (e.g., has unsound reasoning, doesn’t show what was required, could be significantly clearer or better organized, etc.).
+  Copy or screenshot this solution, then in a few sentences, explain what was deficient and how it could be fixed.
+
+  (Alternatively, if you think one of your solutions is significantly \emph{better} than the posted one, copy it here and explain why you think it is better.)
+
+  If you didn't turn in the previous homework, then (1)~state that you didn't turn it in, and (2)~pick a problem that you think is particularly challenging from the previous homework, and explain the answer in your own words.
+  You may reference the answer key, but your answer should be in your own words.
+
+  \begin{solution}
+
+  \end{solution}
+  
+  \question[12] \textbf{Undecidable vs.\ \NPhard\ vs.\ \NPcomplete.}
+  
+  Show that the undecidable language $\atm$ is $\NP$-hard, but is not $\NP$-complete.
+   
+  You may use the fact that $\NP\subseteq\EXP$ without proof.
+  (This was the result of the extra-credit problem from HW7.
+  Recall that $\EXP$ is the class of all languages that are decidable in exponential time, i.e., in time $O(2^{n^k})$ for some constant $k$ where $n$ is the input size.)
+   
+  \begin{solution}
+
+  \end{solution}
+
+  \pagebreak
+  
+  \question[16] \textbf{Search vs.\ decision: any Hamiltonian path.}
+
+  Define the language
+  \[
+    \AnyHamPath = \set{G : G \text{ is an undirected graph with a Hamiltonian path}} \; \text.
+  \]
+  
+  Suppose that there exists an efficient algorithm~$D$ that decides $\AnyHamPath$.
+  Give an efficient algorithm that, on input an undirected graph $G$, outputs a Hamiltonian path in~$G$ if one exists, otherwise it outputs ``No Hamiltonian path exists.''
+  Prove that your algorithm is correct and runs in polynomial time.
+
+  \begin{solution}
+
+  \end{solution}
+
+  \question[20] \textbf{The fire-station problem.}
+  
+  The state government is building fire stations in a region of Northern Michigan that has many small towns connected by roads.
+  Since it's expensive to install a fire station in every town, the government has decided that it wants to build as few fire stations as possible, so that each town either has a fire station, or is directly connected by a road to a neighboring town that has a fire station.
+
+  Formally, the decision problem $\FS$ is defined as follows: given an undirected graph $G=(V,E)$ and a positive integer ``budget''~$k$, does there exist a subset $S \subseteq V$ of at most~$k$ vertices such that for every $v \in V$, either $v \in S$ or there is an edge $(u,v) \in E$ such that $u \in S$?
+  (Make sure to understand how this problem differs from the similar-looking $\VertCov$ problem!)
+  In this problem you will show that $\FS$ is $\NPhard$, by proving that $\TSAT \leq_p \FS$.
+    
+  Since $\FS$ has some resemblance to $\VertCov$, a good source of inspiration is the $\TSAT$-to-$\VertCov$ reduction from lecture.
+  To start, we modify the reduction by making each ``clause gadget'' a \emph{single vertex} (rather than a triangle of three vertices).
+  To compensate for the simpler clause gadgets, the ``variable gadgets'' will need to be a little more complex, in a way that you will determine.
+  In addition, the ``budget''~$k$ will need to be different.
+
+  As an \emph{incomplete} example of the modified reduction, consider the Boolean formula \[ \varphi = (x_1 \lor x_2 \lor x_3) \land (\neg x_1 \lor \neg x_2 \lor \neg x_3) \land (x_1 \lor \neg x_2 \lor x_3) \land (\neg x_1 \lor x_2 \lor \neg x_3) \; \text.
+  \] The reduction starts by building the following \emph{partial} graph; you will define appropriate other nodes and edges for the variable gadgets:
+    
+  \begin{center}
+    \begin{tikzpicture}[
+      node/.style={circle, draw, minimum size=1cm}, % set minimum size for all nodes
+      ]
+      % Known Variable Gadget Nodes
+      \node[node] (a) at (0,0) {$T_1$};
+      \node[node, right=of a] (b) {$F_1$};
+      
+      \node[node, right=of b] (c) {$T_2$};
+      \node[node, right=of c] (d) {$F_2$};
+      
+      \node[node, right=of d] (e) {$T_3$};
+      \node[node, right=of e] (f) {$F_3$};
+      
+      \node[left=0.25cm of a] (g) {partial variable gadgets:};
+      \node[below=1.5cm of g] (h) {clause gadgets:};
+      
+      % Clause Gadgets
+      \node[node, below=of b] (i) {$C_1$};
+      \node[node, below=of c] (j) {$C_2$};
+      \node[node, below=of d] (k) {$C_3$};
+      \node[node, below=of e] (l) {$C_4$};
+      
+      
+      % Known Variable Gadget Connections
+      \foreach \from/\to in {a/b, c/d, e/f}
+      \draw (\from) -- (\to);
+      
+      % Clause and Variable Gadget Connections
+      \foreach \from/\to in {a/i, a/k, b/j, b/l, c/i, c/l, d/j, d/k, e/i, e/k, f/j, f/l}
+      \draw (\from) -- (\to);
+      
+    \end{tikzpicture}
+  \end{center}
+  
+  Show the following two things:
+  \begin{enumerate}
+  \item that $\FS$ is $\NPhard$, by proving that $\TSAT \leq_p \FS$;
+  \item a diagram depicting the full output of your reduction for the formula~$\varphi$ given above.
+  \end{enumerate}
+
+  As always, your proof will need to include all of the steps outlined in \href{https://drive.google.com/drive/u/1/folders/1fHV5RQgjvt0rWCTYv2EExI0M3cVDyi6G}{Handout 3: $\NP$-Hardness Proofs}.
+
+  \begin{solution}
+    
+  \end{solution}
+
+  \question \textbf{Approximate knapsack.}
+  
+  Recall the \emph{$0$-$1$ knapsack} problem, in which we are given a set of items having weights and values, and wish to select a subset of the items so that their total weight does not exceed a specified capacity, and their total value is maximized.
+
+  More specifically, an instance is a vector of weights $W=(W_{1}, \ldots, W_{n})$, a vector of values $V=(V_{1},\ldots, V_{n})$, and a knapsack capacity~$C$, all of which are non-negative integers.
+  (Without loss of generality, each $W_{i} \leq C$, because otherwise the $i$th item cannot be selected, so it is irrelevant.)
+  The desired output is a subset $I \subseteq \set{1,\ldots,n}$ of the items that maximizes the total value $\sum_{i \in I} V_{i}$, subject to the constraint that the total weight $\sum_{i \in I} W_{i} \leq C$.
+
+  Recall from lecture that the Combined-Greedy algorithm for this problem is defined as follows:
+  \begin{enumerate}
+  \item Run the Single-Greedy algorithm,
+  \item Run the Relatively-Greedy algorithm,
+  \item Select one of the outputs that has the most total value
+    (breaking a tie arbitrarily).
+  \end{enumerate}
+  (Refer to the lecture for the definitions of the two sub-algorithms.)
+
+  In this question, you will prove that the Combined-Greedy algorithm is a $1/2$-approximation algorithm for the $0$-$1$ knapsack problem.
+
+  \begin{parts}
+    \part[8] Recall from lecture that one way to prove the correctness of an approximation algorithm for a maximization problem is to show a lower bound on ALG, the value obtained by the algorithm, and show a related upper bound on OPT, the value of an optimal fractional solution.
+    In this part, you will show an upper bound on OPT.
+    
+    To do this, it will help to recall from Homework~5 the \emph{fractional} knapsack problem, a variant of the $0$-$1$ problem that allows for taking any \emph{partial} amount of an item.
+    That is, for an item of weight~$W$ and value~$V$, we may select some fractional amount $t \in [0,1]$, which has weight $t \cdot W$ and value $t\cdot V$.
+    Recall that the optimal value for $0$-$1$ knapsack is at most the optimal value for the fractional version (on the same knapsack instance).
+
+    \medskip
+
+    Prove that the optimal value OPT for the $0$-$1$ knapsack problem is at most the \emph{sum} of the values obtained by the two sub-algorithms.
+
+    \medskip \emph{Hint:} It may help to recall from Homework~5 the greedy algorithm for the fractional knapsack problem, which is closely related to Relatively-Greedy (make sure to understand the difference!).
+    You showed that this ``Fractional-Greedy'' algorithm obtains an optimal solution for fractional knapsack.
+    You can use that fact here without repeating the proof.
+
+    \begin{solution}
+
+    \end{solution}
+    
+    \part[6] Using the previous part, and by establishing a suitable lower bound on the value ALG obtained by Combined-Greedy, show that it is a $1/2$-approximation algorithm for the $0$-$1$ knapsack problem.
+    
+    \begin{solution}
+
+    \end{solution}
+  \end{parts}
+
+  \question \textbf{Approximate $\fSetCov$.}
+
+  In this question, you will consider a variant of the $\SetCov$ problem where each element of the universe is in a limited number of subsets.
+  Formally, in the $\fSetCov$ problem, we are given a ``universe'' (set)~$U$ and subsets $S_1, \ldots, S_n \subseteq U$ \emph{where each universe element appears in at most~$f$ of the subsets}.
+  The goal is to find a smallest collection of the subsets that ``covers''~$U$, i.e., an $I \subseteq \set{1,\ldots,n}$ of minimum size such that $\bigcup_{i \in I} S_{i} = U$.
+  We assume that $\bigcup_{i=1}^{n} S_{i} = U$, otherwise no solution exists.
+
+  You will analyze an approximation algorithm ``$f$-cover'' for the $\fSetCov$ problem.
+  The algorithm is a generalization of the ``double cover'' algorithm for $\VertCov$ from lecture, and it works essentially as follows: while there is some uncovered element~$u$ in the universe, add to the cover \emph{all} the subsets to which~$u$ belongs.
+  The formal pseudocode is as follows.
+  The notation $I(u) = \set{i : u \in S_i}$ for $u \in U$, that is, $I(u)$ indicates the subsets to which~$u$ belongs.
+
+  \begin{algorithm}[H]
+    \begin{algorithmic}[1]
+      \Function{$f$-cover}{$U, S_1, \ldots, S_n$}
+      \State $I = C = \emptyset$
+      \Comment{selected indices $I$, covered elements $C$}
+      \While{$C \neq U$}
+      \Comment{not all elements are covered}
+      \State choose an arbitrary $u \in U \setminus C$
+      \label{fcov:pickuncovered}
+      \Comment{element $u$ is not yet covered}
+      \State $I = I \cup I(u)$, $C = C \cup \bigcup_{i \in I(u)} S_{i}$
+      \Comment{add \emph{all} subsets $S_{i}$ containing $u$ to the cover}
+      \EndWhile
+      \State \Return $I$
+      \EndFunction
+    \end{algorithmic}
+  \end{algorithm}
+    
+  Fix some arbitrary $\fSetCov$ instance, and let~$I^*$ denote an optimal set cover for it.
+  Let~$E$ denote the set of elements~$u$ chosen in Step~\ref{fcov:pickuncovered} during an execution of the algorithm, and let~$I$ denote the algorithm's final output.
+
+  \begin{parts}
+    \part[7] Prove that $I(u) \cap I(u') = \emptyset$ for every distinct $u, u' \in E$.
+    In other words, prove that if $u$ and $u'$ are each selected as the uncovered element in different iterations, none of the $S_i$ contains both~$u$ and~$u'$.
+    \label{it:fsc-one}
+        
+    \begin{solution}
+
+    \end{solution}
+
+    \part[7] We want a lower bound on $\text{OPT} = |I^*|$.
+    Using the previous part, prove that $|E| \leq |I^*|$.
+    
+    \begin{solution}
+
+    \end{solution}
+
+    \pagebreak
+    
+    \part[7] We want an upper bound on $\text{ALG} = |I|$.
+    Prove that $|I| \leq f \cdot |E|$, and conclude that the $f$-cover algorithm is an $f$-approximation algorithm for the $\fSetCov$ problem.
+        
+    \begin{solution}
+
+    \end{solution}
+
+    \part[7] Prove that for every positive integer~$f$, there is an input for which the $f$-cover algorithm necessarily outputs a cover that is \emph{exactly} $f$ times larger than an optimal one.
+    
+    \begin{solution}
+
+    \end{solution}
+  \end{parts}
+
+  \bonusquestion[5] \textbf{Optional extra-credit question: disk storage}
+
+  You have been hired as a summer intern to work on a disk storage system.
+  There are two identical disks, each with storage capacity of~$L$.
+  There are~$n$ files $F = \set{f_1, \dots, f_n }$, where file~$f_i$ has size~$\ell_{i}$.
+  A file cannot be split between the two disks, it must be stored entirely on one or the other (if it is stored at all).
+
+  The Disk Storage Optimization Problem is to store the \emph{maximum number} of files from~$F$ on the two disks.
+  It turns out that the decision version of this problem is NP-complete (maybe you can prove it!).
+
+  Give a polynomial-time algorithm that produces a solution---i.e., a selection of files and which disk to store each of them on---that stores a number of files \emph{within just one} of optimal.
+
+  This result is neat, since all of the approximation algorithms we've seen so far come within some \emph{multiplicative} factor of optimal.
+  Here, the algorithm finds a solution that is only an \emph{additive} amount worse than optimal!
+
+  \begin{solution}
+
+  \end{solution}
+  
+\end{questions}
+\end{document}

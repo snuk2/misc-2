@@ -1,0 +1,317 @@
+\documentclass[11pt,addpoints]{exam}
+\usepackage{fullpage}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{enumerate}
+\usepackage{listings}
+\usepackage[boxed]{algorithm}
+\usepackage[noend]{algpseudocode}
+
+\DeclareMathOperator{\Ex}{\mathbb{E}}
+
+\algrenewcommand\algorithmicrequire{\textbf{Input:}}
+\algrenewcommand\algorithmicensure{\textbf{Output:}}
+\usepackage{hyperref}
+\usepackage{tikz}
+
+
+% in order to compile this file you need to get 'header.tex' from
+% Canvas and change the line below to the appropriate file path
+\input{header}
+
+\DeclareMathOperator{\rank}{rank}
+
+\newcommand{\hwnum}{11}
+\newcommand{\duedate}{April 23}
+
+\hwheader   % header for homework
+
+% Comment the following line in order to hide solutions.
+% Uncomment the line to show solutions written inside of
+% LaTeX solution environments like:
+%   \begin{solution}
+%     My solution.
+%   \end{solution}.
+\printanswers
+
+\begin{document}
+
+\noindent \textbf{This homework is due 6 days later than usual, on \emph{Tuesday 4/23} at 8pm.
+  This is because some of the questions (labeled below) rely on the lectures on 4/15 and 4/17.}
+\medskip
+\hrule
+
+\medskip
+
+\hwpreface
+
+\pointsinmargin
+\pointpoints{pt}{pts}
+\bonuspointpoints{EC pt}{EC pts}
+\marginpointname{ \points}
+\marginbonuspointname{ \bonuspoints}
+
+\begin{questions}
+  \addtocounter{question}{-1}
+
+  \question[0] \textbf{Before you start; before you submit.}
+  
+  If applicable, state the name(s) and uniqname(s) of your collaborator(s).
+
+  \begin{solution}
+    
+  \end{solution}
+
+  \question[10] \textbf{Self assessment.}
+  
+  Carefully read and understand the posted solutions to the previous homework.
+  Identify one part for which your own solution has the most room for improvement (e.g., has unsound reasoning, doesn’t show what was required, could be significantly clearer or better organized, etc.).
+  Copy or screenshot this solution, then in a few sentences, explain what was deficient and how it could be fixed.
+
+  (Alternatively, if you think one of your solutions is significantly \emph{better} than the posted one, copy it here and explain why you think it is better.)
+
+  If you didn't turn in the previous homework, then (1)~state that you didn't turn it in, and (2)~pick a problem that you think is particularly challenging from the previous homework, and explain the answer in your own words.
+  You may reference the answer key, but your answer should be in your own words.
+
+  \begin{solution}
+
+  \end{solution}
+    
+  \question \textbf{Short-answer potpourri.}
+  
+  \begin{parts}
+    \part[5] Suppose that Alice's bit string (a binary number) is $x=100000100$ and Bob's bit string is $y=10010001$.
+    List, with justification, all the ``bad'' primes~$p$ for which the fingerprinting protocol from class will \emph{fail} to detect that $x\neq y$.
+    (Recall that $x$ and $y$ are interpreted as integers written in base two, with digits written from most to least significant.)
+    
+    \begin{solution}
+
+    \end{solution}
+
+    \pagebreak
+
+    \part[5] In class we saw that 2 is not a generator of $\mathbb{Z}_7^*$, but 3 is. State, with justification, all the other elements of $\mathbb{Z}_7^*$ that are generators of $\mathbb{Z}_7^*$.
+
+    \begin{solution}
+        
+    \end{solution}
+
+    \part[5] \emph{This part relies on material from the lecture on 4/15.}
+    
+    On the distant planet of Arrakis, every month has exactly 35 days (numbered from zero).
+    The Bene Gesserit's plans are measured in \emph{centuries}.
+    One month, on the $0$th day, they set a plan in motion that, exactly $3^{28}$ days later, will finally defeat the tyrannical Emperor Leto (the son of the Kwisatz Haderach, of course).
+    Determine the day of the month when this will occur.
+    Do not use any electronic computations, use as little by-hand calculation as you can, and show your work.
+
+    \begin{solution}
+        
+    \end{solution}
+
+    \part[5] \emph{This question relies on material from the lecture on 4/17.}
+    
+    Pam shows Creed two pictures and claims that they are different, but Creed cannot see any difference between them.
+    Pam wants to convince Creed that they really are different, but without revealing what the difference is.
+    How can Creed test Pam so that if the pictures really are different, Pam will pass the test while revealing nothing more than this fact to Creed; and if the pictures are identical, Pam will fail the test with probability at least~99\%?
+    (Just describe the test; you do not need to prove any of its properties.)
+
+    \begin{solution}
+        
+    \end{solution}
+  \end{parts}
+  
+\question \textbf{Near median.}
+  
+  In the Quicksort algorithm, we would like to use a pivot that is ``nearly'' the median value of the array, because it partitions the array into two roughly equal-sized parts for recursive sorting.
+  In this problem, we will develop a randomized algorithm for finding a near-median in \emph{constant} time (with good probability), independent of the input size.
+
+  Let~$S$ be an array of~$n$ orderable elements, which are distinct without loss of generality  We say that $a\in S$ has \emph{rank} $\rank(a)=k$ if~$a$ is the $k$th smallest element in $S$.
+  Given input~$S$, the goal is to find an element having rank between $2n/5+1$ and $3n/5$ (inclusive).
+  For simplicity, \emph{we assume that~$n$ is divisible by 5} (e.g., we can ``pad'' the end of the array with up to four extra elements).
+  
+  \begin{parts}
+    \part[5] Consider the simplest algorithm:
+    \begin{quote}
+      Choose an element $a \in S$ uniformly at random.
+    \end{quote}
+    Prove that $\Pr[\rank(a) \le 2n/5] = 2/5$ and $\Pr[\rank(a) > 3n/5] = 2/5$.
+    Conclude that this algorithm is correct with probability at least $1/5$.
+
+    \begin{solution}
+        
+    \end{solution}
+
+    \part[7] The previous result is not too bad, but its probability of correctness isn't so good.
+    We would like to improve the success probability to at least $1-\delta$, for any desired $\delta>0$.
+    Consider the following algorithm:
+    \begin{quote}
+      Uniformly and independently sample~$k$ elements from~$S$ \emph{with replacement} (i.e., with repetitions allowed), for some \emph{odd}~$k$ to be determined below.
+      Return the median of these samples.
+      (Because~$k$ is odd, the median is uniquely determined.)
+    \end{quote}
+    Let $X^{tiny}$ and $X^{huge}$ denote the number of sampled elements whose ranks are, respectively, at most $2n/5$, and more than $3n/5$.
+    Prove that the algorithm's output is correct if both $X^{tiny},X^{huge}<k/2$.
+
+    \begin{solution}
+      
+    \end{solution}
+
+    \part[5] Determine, with proof, a \emph{constant} value of~$k$ (which may depend on~$\delta$, but not on~$n$) so that $\Pr[X^{tiny}\ge k/2]\le\delta/2$ and $\Pr[X^{huge}\ge k/2]\le\delta/2$.
+
+    \hint{Set up and use an appropriate Chernoff bound.}
+
+    \begin{solution}
+      
+    \end{solution}
+           
+    \part[5] Conclude that the algorithm is correct with probability at least $1-\delta$.
+
+    \begin{solution}
+      
+    \end{solution}
+  \end{parts}
+
+  \question \textbf{Diffie--Hellman.}
+
+  Daphne and Julie are writing the solutions to Homework~11.
+  Daphne has a draft of the solutions on her laptop and wants to send them confidentially to Julie.
+  Since they have not had a private moment to choose a shared secret key together, they decide to use the Diffie-Hellman protocol to establish one over the public network.
+  
+  \begin{parts}
+    \part[5]
+    Suppose they use the Diffie--Hellman protocol with the small prime $p=19$ and generator $g=2$ for $\Z_p^*$.
+    Daphne chooses secret exponent $a=7$, and Julie chooses $b=11$.
+    Derive the values that they send each other and the secret key that each one computes, to conclude that they both compute the same value.
+
+    You may use a calculator for basic arithmetic (multiplication and division), but beyond that you should use the efficient algorithms that a computer would employ.
+    Show your work (repeated squaring etc.), but you can omit the details of modular reductions.
+    Keep numbers small by reducing modulo~$p$ where appropriate, and use negative number where they help.
+                
+    \begin{solution}
+
+    \end{solution}
+    
+    \part[12] After realizing that the parameters from the previous part are much too small (since they are breakable by hand), Daphne and Julie decide to use the Diffie--Hellman protocol with a different, huge prime~$p$ and generator~$g$ of $\Z_p^*$.
+    As specified by the protocol, Daphne chooses secret $a \in \Z_p^*$ uniformly at random, and sends $x = g^a \bmod p$ to Julie.
+    Similarly, Julie chooses secret $b \in \Z_p^*$ uniformly at random, and sends $y = g^b \bmod p$ to Daphne.
+
+    Unbeknownst to them, there is a student Malcolm in the middle of their network, who is able to intercept \emph{and undetectably replace} what they send over the network with other values of his choice.
+    (In class we considered only an \emph{eavesdropper} Eve who can merely read all the network traffic; this Malcolm is more powerful.)
+    
+    Specifically, Malcolm chooses a secret $c \in \Z_p^*$ himself, and sends $z = g^c \mod p$ to both Daphne and Julie in place of their messages to each other.
+    That is, Daphne thinks that Malcolm's message came from Julie, and Julie thinks that Malcolm's message came from Daphne.
+        
+    \begin{enumerate}
+    \item Give an expression for the key that Daphne~$k_D$ computes, and the key~$k_J$ that Julie computes, in terms of the secret exponents $a,b,c$ and the public values $p,g$.
+    
+      \begin{solution}
+
+      \end{solution}
+
+    \item Daphne and Julie work on the homework solutions by encrypting their messages using the keys they computed in the previous part (which they believe are the same key).
+      Malcolm knows the encryption scheme that Daphne and Julie are using.
+      Describe how Malcolm can decrypt all of Daphne and Julie's communications without being detected, i.e., so that they believe they are communicating confidentially, and when they decrypt the ciphertexts they receive, they get exactly the messages that were intended for them.
+
+      A valid solution should show the following:
+      \begin{itemize}
+      \item how Malcolm can successfully decrypt all of the ciphertexts that Daphne and Julie send to each other;
+      \item how Malcolm can avoid detection by replacing the ciphertexts that Daphne and Julie send with ones that will yield the intended messages when they decrypt (using what they believe to be their shared key).
+      \end{itemize}
+
+      \begin{solution}
+
+      \end{solution}
+    \end{enumerate}
+  \end{parts}
+
+  \question \textbf{Diffie--Hellman as public-key encryption.} \emph{This question relies on some material from the lecture on 4/15.}
+
+  In class we said that Diffie--Hellman is an interactive protocol for two parties to establish a shared secret over a public channel, but it was not until RSA that a full public-key encryption scheme was known.
+  However, it turns out that, by viewing the Diffie--Hellman protocol in the right way, we can actually use it for public-key encryption!
+  (This perspective was discovered several years after RSA was proposed, and is widely used in practice now.)
+
+  Let~$p$ be a huge prime and~$g$ be a generator of $\Z_p^*$, both public.
+  To generate a public key, Alice simply performs her ``side'' of the DH protocol: she chooses a secret exponent $a \in \Z_p^* = \set{1, \ldots, p-1}$ uniformly at random, and publishes $x = g^a \bmod p$ as her public key.
+
+  \begin{parts}
+    \part[6] Suppose that somebody (Bob, or Charlie, or Dan, etc.)\ wants to send Alice a confidential message~$m$ using her public key (and the other public data).
+    Describe what the sender should do to accomplish this, and how Alice can compute the intended message from what is sent to her.
+    (The algorithms run by Alice and the sender should be efficient.)
+    Also give some brief intuition for why the method is plausibly secure against an eavesdropper.
+    (You may assume that the DH protocol itself is secure, and that the sender has Alice's genuine public key.)
+
+    \hint{Have the sender perform the other ``side'' of the DH protocol, and also compute and send something more.
+    How can the message be hidden so that only Alice can compute it using her secret key?}
+
+    \begin{solution}
+
+    \end{solution}
+
+    \part[5] In class we mentioned a security problem with the oversimplified RSA encryption scheme, as we presented it.
+    Briefly describe the problem, and explain why the DH-style encryption scheme from the previous part does \emph{not} suffer from this problem.
+    
+    \begin{solution}
+
+    \end{solution}
+  \end{parts}
+  
+  \question \textbf{RSA.} \emph{This question relies on material from the lecture on 4/15.}
+    
+  Here you will run the RSA signature scheme on some small ``toy'' parameters.
+  You may use a calculator for basic arithmetic (multiplication and division), but beyond that you should use the efficient algorithms that a computer would employ (where applicable), and show your work.
+  Keep the numbers small by reducing modulo~$n$ where appropriate, and use negative numbers where they help.
+
+  Let $n = 77$ be the public modulus and $e = 7$ be the public exponent.
+
+  \begin{parts}
+    \part[5] Compute the private exponent~$d$ using the extended Euclidean algorithm (which we have repeated below for convenience).
+        
+    \begin{algorithm}[H]
+      \begin{algorithmic}[1]
+        \Require{integers $x \geq y\geq 0$, not both zero}
+        \Ensure{a triple $(g,a,b)$ of integers where $g=\gcd(x,y)$ and
+          $ax+by=g$}
+        \Statex
+        \Function{ExtendedEuclid}{$x,y$}
+        \If{$y = 0$} \State \Return $(x,1,0)$
+        \Comment{Base case: $1x + 0y = \gcd(x,y) = x$}
+        \Else \State Write $x = qy + r$ for an integer $q$, where $0\leq r < y$
+        \State $(g,a',b') \gets \Call{ExtendedEuclid}{y,r}$
+        \State $a \gets b'$
+        \State $b \gets a' - b'q$
+        \State \Return $(g, a, b)$
+        \EndIf
+        \EndFunction
+      \end{algorithmic}
+    \end{algorithm}
+    
+    \begin{solution}
+
+    \end{solution}
+
+    \part[5] Next, compute the correct signature for $m = 3$.
+    
+    \begin{solution}
+
+    \end{solution}
+
+    \pagebreak
+    
+    \part[5] Show how one would verify, using only the public information~$n,e$, that the signature~$s$ you found in the previous part is correct for $m=3$.
+    
+    \begin{solution}
+
+    \end{solution}
+
+    \part[5] Now suppose that we had a huge (non-``toy'') RSA modulus~$n$ that was, say, 1000 bits or more in size (i.e., $n \geq 2^{1000}$).
+    Which algorithm(s) that you used in the previous parts are \emph{feasible} for an ordinary computer to perform for this size, and which would be \emph{infeasible} for even a state-of-the-art supercomputer to perform?
+    Explain your reasoning.
+      
+    \begin{solution}
+
+    \end{solution}
+  \end{parts}
+
+\end{questions}
+
+\end{document}

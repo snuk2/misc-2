@@ -1,0 +1,186 @@
+\documentclass[12pt]{hw}
+\usepackage{graphicx}
+\usepackage{float}
+
+
+%====================================================================
+% IMPORTANT INFORMATION TO FILL OUT:
+%====================================================================
+\usepackage{amsthm}
+\newtheorem{definition}{Definition}
+\newcommand{\getr}{\ensuremath{{\overset{\$}{\leftarrow}}}\xspace}
+\newcommand{\Gen}{\ensuremath{{\sf Gen}}\xspace}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\G}{\mathbb{G}}
+\newcommand{\Dec}{\ensuremath{{\sf Dec}}\xspace}
+\newcommand{\Enc}{\ensuremath{{\sf Enc}}\xspace}
+% ENTER YOUR NAME HERE:
+\renewcommand{\student}{ YOUR NAME HERE (uniqname here) }
+
+% LIST ALL COLLABORATORS HERE:
+\renewcommand{\collaborators}{Name/Exercise Number(s), Name/Exercise Numbers (s)}
+
+%====================================================================
+%====================================================================
+
+\setcounter{sheet}{5} % Homework number here
+
+\begin{document}
+
+\maketitle
+
+\begin{center} Due: Nov 26, 2024 (at 11:59 PM US Eastern Time) \\[10pt]
+  \hrule height 1pt
+\end{center}
+
+\toggletrue{answers}
+% \togglefalse{answers}
+
+\setcounter{MaxMatrixCols}{20} \setlength\parindent{0pt}
+
+% =============================================================================
+% =============================================================================
+
+
+% ===============================================
+% ===============================================
+
+\begin{exercise}
+{\bf (15 points)}
+In class, we saw how 
+Ke can prove that she knows the password to a bike chain lock in zero-knowledge.
+Now, suppose that Ke brings two bike chain locks. She wants to prove
+in zero-knowledge 
+that she knows the password for at least one of them, but without
+revealing the password, or revealing which one she knows the password for.
+Can you design a physical zero-knowledge proof protocol
+such that Ke can prove the statement in zero knowledge?
+Please describe the protocol clearly; you can draw a simple picture if that helps. 
+You don't have to prove the security of the protocol.
+\end{exercise}
+\begin{answer}
+Write Solution Here.
+\end{answer}
+% =============================================================================
+
+
+\begin{exercise}
+     {\bf (20 points)} 
+     Suppose you are given two commitment schemes $(\mathsf{com}_1, \mathsf{open}_1)$ and $(\mathsf{com}_2, \mathsf{open}_2)$ with the same message space and commitment space.
+
+
+\begin{enumerate}[(a)]
+    \item Suppose that both commitment schemes satisfy the perfectly binding property. However only one of them satisfies the computationally hiding property (but you don't know which one). 
+    Construct a commitment scheme $(\mathsf{com}, \mathsf{open})$ which is both perfectly binding and computationally hiding using only the provided commitment schemes.
+
+    \item Now suppose that both the commitments satisfy the computationally hiding property. However, only one of them satisfies the perfectly binding property (but you don't know which one). Construct a commitment scheme $(\mathsf{com}, \mathsf{open})$ which is both perfectly binding and computationally hiding using only the provided commitment schemes. 
+\end{enumerate}
+\end{exercise}
+
+\begin{answer}
+  Write Solution Here.
+\end{answer}
+
+
+% =============================================================================
+\begin{exercise}
+{\bf (25 points)}
+{\bf Graph Isomorphism}
+Consider two graphs $G_0 = (V_0,E_0) $ and $G_1= (V_1,E_1)$ where $V_b$ and $E_b$ are the vertices and edges respectively for graph $G_b$. We say the graphs are isomorphic if they are structurally the same. Formally, $G_0$ and $G_1$ are isomorphic if there exists a bijective function $\varphi: V_0 \to V_1$ such that for any two vertices $u,v \in V_0$, $(u,v) \in E_0$ if and only if $(\varphi(u),\varphi(v)) \in E_1$. Such a function $\varphi$ is called an isomorphism.
+Paxton wants to prove to Valerie that $G_0$ is isomorphic to $G_1$ (denoted $G_0 \simeq G_1$),
+but does not want to reveal any information about $\varphi$.
+Consider the following protocol.
+\vspace{1em}
+\begin{mdframed}
+    \vspace{0.5em}
+    \textbf{Zero-Knowledge Proof for Graph Isomorphism}\\\\
+    Initially, Paxton takes as input statement $(G_0, G_1)$ and witness $\varphi$. Valerie takes as input statement $(G_0, G_1)$.
+    Paxton and Valerie repeat the following interaction for $n$ rounds where $n$ is the security parameter.
+    \begin{enumerate}
+        \item Paxton picks a random permutation $\pi$, computes graph $H = \pi(G_1)$, and sends $H$ to Valerie. Here, $\pi(G_1)$ essentially relabels the vertices of the graph based on the permutation.
+        \item Valerie responds with a challenge $c\ \sample\ \{0, 1\}$.
+        \item If $c = 0$, Paxton sends $\rho = \pi \circ \varphi$, and Valerie checks if $H = \rho(G_0)$. Here $\circ$ denotes functional composition (i.e. $\rho(G)$ first computes $G' = \varphi(G)$ then computes $\pi(G')$)
+        \item If $c = 1$, Paxton sends $\rho = \pi$, and Valerie checks if $H = \rho(G_1)$.
+    \end{enumerate}
+\end{mdframed}
+\vspace{1em}
+
+
+\begin{enumerate}[(a)]
+\item Suppose that $G_0$ is not isomorphic to $G_1$. 
+Show that for any possibly malicious prover, the probability 
+that 
+Valerie rejects in a \emph{single} fixed round is at least $\frac12$. 
+Please justify your answer.
+
+\item 
+Suppose that $G_0$ is not isomorphic to $G_1$, and the prover 
+can be arbitrarily malicious.
+Please provide a lower bound on the probability that Valerie rejects in at least
+one out of $n$ rounds. Give the tightest 
+lower bound you can show, and justify your answer.
+
+\item 
+Prove that the above construction is honest-verifier zero-knowledge. 
+Intuitively, 
+you want to show that the transcript the verifier sees by interacting with an honest prover is indistinguishable from a simulated transcript generated without knowledge of the witness.
+We can capture this intuition by showing there exists a simulator that can spoof an accepting proof for a valid statement, even without the corresponding witness, so long as it sees the verifier's randomness ahead of time.
+
+Formally, if indeed $G_0 \simeq G_1$, there must exist a PPT simulator $\mathcal{S}$ that on input $(G_0, G_1)$ can produce a message transcript $(H', c', \rho')$ indistinguishable from one generated by Paxton and Valerie. You may assume that Valerie always behaves honestly.
+Please construct such a simulator. 
+Show that your simulator is PPT, and informally argue why it produces a transcript indistinguishable from one generated by Paxton and Valerie.
+
+
+\end{enumerate}
+
+
+\end{exercise}
+\begin{answer}
+Write Solution Here.
+\end{answer}
+% =============================================================================
+
+
+\begin{exercise}
+{\bf (25 points)}
+{\bf Multi-Valued Byzantine Broadcast}
+Consider a multi-valued variant of the original Byzantine Broadcast protocol (called Multi-Valued Byzantine Broadcast) in which the sender has an $\ell$-bit value ${\bf m} \in \{0, 1\}^\ell$, and it wants to propagate this value to everyone else. Consistency requires that all honest output the same value; and validity requires that if the sender is honest, all honest nodes output the sender's input value ${\bf m}$.
+Design a protocol for achieving Multi-Valued Byzantine Broadcast, and prove that it is secure. Your protocol should be able to tolerate $f < n$ number of corruptions.
+(Hint: generalize the Dolev-Strong protocol, and prove using the same framework we learned in class.)
+
+\end{exercise}
+
+\begin{answer} 
+Write Solution Here.
+\end{answer}
+
+
+
+% =============================================================================
+\begin{exercise}
+{\bf (15 points)}    
+Consider an execution of the Streamlet protocol where $n = 99$. Suppose strictly fewer than $n / 3$ nodes are corrupt. 
+Let 
+\begin{align*}
+    \bot - e_1 - e_2 - \ldots
+\end{align*}
+denote a notarized chain starting with the genesis block $\bot$ followed by blocks 
+with epoch numbers $e_1$, $e_2$, and so on.
+For each of the following scenarios, please answer whether such a scenario can possibly occur during the execution. If so, please provide an explanation of how such a scenario can occur, and state which blocks are considered final by honest nodes. If not, please explain why. 
+% Explain the chains
+\begin{enumerate}[(a)]
+    \item The two \emph{notarized} chains $\bot - 1 - 3 - 5 - 7$ and $\bot - 1 - 2 - 4 - 6$ will both be in honest view.
+
+    \item An honest node $P$ observes a notarized chain of the form $\bot - 1 - 2 - 3 - 4$ and an honest node $Q$ observes a notarized chain of the form $\bot - 1 - 2 - 3 - 5$.
+
+    \item An honest node $P$ observes a notarized chain of the form $\bot - 1 - 2 - 3 - 4 - 5$ and an honest node $Q$ observes a notarized chain of the form $\bot - 3 - 4 - 5$.
+\end{enumerate}
+\end{exercise}
+\begin{answer}
+Write Solution Here.
+\end{answer}
+
+% =============================================================================
+
+\end{document}

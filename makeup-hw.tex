@@ -1,0 +1,152 @@
+\documentclass[12pt]{hw}
+\usepackage{graphicx}
+\usepackage{float}
+
+
+%====================================================================
+% IMPORTANT INFORMATION TO FILL OUT:
+%====================================================================
+\usepackage{amsthm}
+\newtheorem{definition}{Definition}
+\newcommand{\getr}{\ensuremath{{\overset{\$}{\leftarrow}}}\xspace}
+\newcommand{\Gen}{\ensuremath{{\sf Gen}}\xspace}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\G}{\mathbb{G}}
+\newcommand{\Dec}{\ensuremath{{\sf Dec}}\xspace}
+\newcommand{\Enc}{\ensuremath{{\sf Enc}}\xspace}
+% ENTER YOUR NAME HERE:
+\renewcommand{\student}{ YOUR NAME HERE (uniqname here) }
+
+% LIST ALL COLLABORATORS HERE:
+\renewcommand{\collaborators}{Name/Exercise Number(s), Name/Exercise Numbers (s)}
+
+%====================================================================
+%====================================================================
+
+\setcounter{sheet}{6} % Homework number here
+
+\begin{document}
+
+\maketitle
+
+\begin{center} Due: Dec 4, 2024 (at 11:59 PM US Eastern Time) \\[10pt]
+  \hrule height 1pt
+\end{center}
+
+\toggletrue{answers}
+% \togglefalse{answers}
+
+\setcounter{MaxMatrixCols}{20} \setlength\parindent{0pt}
+
+% =============================================================================
+% =============================================================================
+
+
+% ===============================================
+% ===============================================
+
+
+% =============================================================================
+
+
+\begin{exercise}
+\textbf{(20 points)}
+Recall that a \textbf{group} $(\mathbb{G},\cdot)$ is a set, $\mathbb{G}$, and a binary operation, $\cdot$, such that
+\begin{enumerate}
+    \item There exists an identity element, 1, such that $1 \cdot g = g, \forall g \in \mathbb{G}$ 
+    \item $\mathbb{G}$ is closed under the operation. That is $\forall g_1,g_2 \in \mathbb{G}, g_1 \cdot g_2 \in \mathbb{G}$
+    \item All elements have an inverse. That is $\forall g_1 \in \mathbb{G}, \exists g_1^{-1} \in \mathbb{G},$ st $ g_1 \cdot g_1^{-1} = 1 $
+     \item The operation is associative. That is $\forall g_1, g_2, g_3 \in \mathbb{G}, (g_1 \cdot g_2) \cdot g_3 = g_1 \cdot (g_2 \cdot g_3)$
+\end{enumerate}
+
+Prove that if $\mathbb{G}$ and $\mathbb{H}$ are groups under the operation $\cdot$, then $\mathbb{G} \times \mathbb{H}:=\{(g,h): g \in \mathbb{G} \wedge h \in \mathbb{H} \} $ is also a group under some operation.
+Please specify an operation, and prove that $\mathbb{G} \times \mathbb{H}$ is a group with respect to this operation. 
+\end{exercise}
+
+\begin{answer}
+  Write Solution Here.
+\end{answer}
+
+
+% =============================================================================
+
+
+\begin{exercise}
+\textbf{(20 points)}
+    Let $G: \set{0,1}^n \rightarrow \set{0,1}^{\ell(n)}$ be a PRG where $\ell(n) >2n$. Are the following functions necessarily PRGs?
+    \begin{enumerate}[(a)]
+        \item $G_1(s):= G(s_L)$ where $s_L \in \set{0,1}^n$ is the $n$ left most digits in $s$ where $n<s<2n$.
+        \item $G_2(s):= G(s)||G(s+1)$ 
+    \end{enumerate}
+\end{exercise}
+
+\begin{answer} 
+ Write Solution Here.
+\end{answer}
+
+
+% =============================================================================
+\begin{exercise}
+\textbf{(20 points)}
+Consider the following public-key encryption scheme. The public key is $pk =(\mathbb{G},q,g,h)$ and private key $x$, generated exactly as in the El Gamal Encryption scheme. In order to encrypt a bit $b$, the sender does the following.
+\begin{mdframed}
+$\Enc(pk,b)=$
+    \begin{itemize}
+    \item If $b=0$, then choose a uniform $y \in Z_q$ and compute $c_1 := g^y$ and $c_2 = h^y$. The ciphertext is $(c_1,c_2)$.
+    \item If $b=1$, then choose uniform $y,z \in Z_q$ and compute $c_1 := g^y$ and $c_2 = g^z$. The ciphertext is $(c_1,c_2)$.
+\end{itemize}
+\end{mdframed}
+Show the following:
+\begin{enumerate}[(a)]
+    \item It is possible to decrypt efficiently given the secret key $x.$ Recall that decryption can be faulty with a negligible probability in public-key encryption.
+    \item This encryption is CPA-secure if the DDH assumption holds for $\mathbb{G}$.
+\end{enumerate}
+\end{exercise}
+\begin{answer}
+Write Solution Here.
+\end{answer}
+
+% =============================================================================
+\begin{exercise}
+\textbf{(20 points)}
+    Let $\{H_1^{s_1}\}$ and $\{H_2^{s_2}\}$ be two hash function families. Define $H^{s_1||s_2}= H_1^{s_1} || H_2^{s_2}$. Show that if at least one of $\{H_1^{s_1}\}$ and $\{H_2^{s_2}\}$ are a collision resistant hash function family, then $\{H^{s_1||s_2}\}$ is a collision resistant hash function family.
+\end{exercise}
+\begin{answer}
+Write Solution Here.
+\end{answer}
+
+% =============================================================================
+\begin{exercise}
+\textbf{(20 points)}
+Recall that in a Byzantine broadcast protocol, the designated sender receives an input bit $b \in \{0, 1\}$. The nodes then run an interactive protocol; at the end of the protocol every honest node outputs a bit. A Byzantine broadcast protocol must satisfy the following two requirements:
+\begin{enumerate}
+    \item \textbf{Consistency: } If two honest nodes output $b'$ and $b$ respectively then $b' = b$. 
+    \item \textbf{Validity: } If the sender is honest and receives the input bit $b$, then all honest nodes should output $b$.
+\end{enumerate}
+
+\begin{enumerate}[(a)]
+    \item \textbf{A Candidate Majority Voting Protocol}.
+We consider a candidate majority voting protocol.
+Assume all messages are signed using a digital signature.
+\begin{mdframed}
+    $\textbf{Candidate Majority Voting Protocol}$:
+    \begin{itemize}
+        \item \textbf{Round 1: } The sender sends $b$ to every node (including itself).
+        \item \textbf{Round 2: } Every node $i \in [n]$ does the following: If a single bit $b'$ is received, send the vote $b'$. Else send the vote $0$.
+        \item \textbf{Round 3: } If some bit $b$ has gained the votes of \emph{every} node, then output $b$; otherwise, output $0$.
+    \end{itemize}
+\end{mdframed}
+
+Does this protocol achieve Byzantine Broadcast? If so, explain why. If not, describe an explicit attack that either breaks consistency or validity. In your attack, use as few corrupt nodes as possible.
+
+
+
+\item \textbf{Knowing Corruptions A-Priori.}
+Suppose that, as a protocol designer, we already know exactly which subset of nodes are corrupt. Describe a $1$-round protocol that achieves Byzantine Broadcast. Here the set of corrupt nodes is provided as input to the protocol.
+\end{enumerate}
+\end{exercise}
+\begin{answer}
+Write Solution Here.
+\end{answer}
+\end{document}

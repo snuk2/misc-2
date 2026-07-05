@@ -1,0 +1,192 @@
+\documentclass[12pt]{hw}
+
+% ====================================================================
+% IMPORTANT INFORMATION TO FILL OUT:
+% ====================================================================
+
+% ENTER YOUR NAME HERE:
+\renewcommand{\student}{ YOUR NAME HERE (uniqname here) }
+
+% LIST ALL COLLABORATORS HERE:
+\renewcommand{\collaborators}{Name/Exercise Number(s), Name/Exercise
+  Numbers(s)}
+\newcommand{\getr}{\ensuremath{{\overset{\$}{\leftarrow}}}\xspace}
+% ====================================================================
+% ====================================================================
+
+\setcounter{sheet}{2} % Homework number here
+
+\begin{document}
+
+\maketitle
+
+\begin{center}
+  Due: September 26, 2024 (at 11:59 PM US Eastern Time) \\[10pt]
+  \hrule height 1pt
+\end{center}
+
+% ====================================================================
+% ====================================================================
+
+\begin{exercise}
+    \textbf{(15 points)}
+    Recall the following definitions:
+	\begin{itemize}
+		\item A non-negative function $f \colon \N \to \R$ is
+		\emph{polynomially bounded}, written $f(n) = \poly(n)$, if
+		$f(n) = O(n^{c})$ for some constant $c \geq 0$.
+		\item A non-negative function $\varepsilon : \N \to \R$ is
+		\emph{negligible}, written $\varepsilon(n) = \negl(n)$, if it
+		decreases faster than the inverse of any polynomial.  Formally:
+		$\lim_{n \to \infty} \varepsilon(n) \cdot n^{c} = 0$ for any
+		constant $c \geq 0$.  (Otherwise, we say that $\varepsilon(n)$ is
+		\emph{non-negligible}.)
+	\end{itemize}
+	
+	Are following functions necessarily negligible? Prove your answer.
+	(Think: why doesn't the base of the logarithm matter in both cases?)
+ \begin{enumerate}[(a)]
+		\item $\varepsilon_1(n) = \dfrac{1}{\log (n^{\log n})}$
+		\item $\varepsilon_2(n) = \dfrac{1}{2^{(\log^{2} n)}}$
+  \item $\varepsilon_3(n) = \nu(n)^{1/50}$, where $\nu(n)$ is a negligible function.
+  \end{enumerate}
+\end{exercise}
+\begin{answer}
+Write solution here
+    \begin{enumerate}[(a)]
+        \item
+        \item
+        \item
+    \end{enumerate}
+\end{answer}
+
+
+% ====================================================================
+% ====================================================================
+
+
+\begin{exercise}
+  \textbf{(15 points)} 
+Recall the definition of multi-message EAV security and multi-message CPA security.
+Consider the following experiments parametrized with $b\in\{0,1\}$:
+\begin{mdframed}
+    {\bf Experiment ${\sf Expt}_{\rm Meav}^{b,\mathcal{A}}(1^n)$}
+    \begin{itemize}
+        \item $(m_{0,1}, \ldots, m_{0, t}), (m_{1, 1}, \ldots, m_{1, t}) \leftarrow \mathcal{A}(1^n)$ where $\forall i \in [t], |m_{0, i}|=|m_{1, i}|$.\\
+        (Here the adversary is choosing two vectors of messages for the challenger to encrypt.)
+        \item $k\getr {\sf Gen}(1^n)$ and $\forall i \in [t], c_i \leftarrow {\sf Enc}_k(m_{b, i})$.\\
+        (The challenger chooses one of the two vectors depending on the parameter $b$ to encrypt and returns it to the adversary.)
+        \item $b'\leftarrow \mathcal{A}(c_1, \ldots, c_t)$.\\
+        (The adversary outputs its guess)
+        \item Output $b'$.
+    \end{itemize}
+\end{mdframed}
+We say that $({\sf Gen, Enc, Dec})$ is multi-message EAV-secure if and only if for any PPT $\mathcal{A}$, 
+\[\{{\sf Expt}_{\rm Meav}^{0,\mathcal{A}}(1^n)\}_n\approx\{{\sf Expt}_{\rm Meav}^{1,\mathcal{A}}(1^n)\}_n.\]
+
+\begin{mdframed}
+    {\bf Experiment ${\sf Expt}_{\rm LRcpa}^{b,\mathcal{A}}(1^n)$}
+    \begin{itemize}
+        \item $k\getr {\sf Gen}(1^n)$.
+        \item $b' \leftarrow \mathcal{A}^{{\sf LR}^b_k(\cdot, \cdot)}(1^n)$ where $\mathsf{LR}^b_k(m_0, m_1)$ outputs $\mathsf{Enc}_k(m_b)$.\\
+        (The adversary gets oracle access to the ${\sf LR}^b_k$ oracle which will always return the encryption of the left message or right message depending on the parameter $b$ when given a message pair. The adversary can make $\poly(n)$ queries.) 
+        \item Output $b'$.
+    \end{itemize}
+\end{mdframed}
+We say that $({\sf Gen, Enc, Dec})$ is multi-message CPA-secure if and only if for any PPT $\mathcal{A}$, 
+\[\{{\sf Expt}_{\rm LRcpa}^{0,\mathcal{A}}(1^n)\}_n\approx\{{\sf Expt}_{\rm LRcpa}^{1,\mathcal{A}}(1^n)\}_n.\]
+    
+Prove that Multi-message CPA security implies multi-message EAV security using the distinguisher version of definitions above.
+\end{exercise}
+
+\begin{answer}
+Write solution here
+\end{answer}
+
+% ====================================================================
+% ====================================================================
+
+
+\begin{exercise}
+  \textbf{(20 points)} 
+  Suppose that $G: \{0, 1\}^n \rightarrow \{0, 1\}^{2n}$ is a secure pseudorandom generator that expands an $n$-bit random seed into a $2n$-bit pseudorandom string. For each of the following questions: first, give a YES/NO answer; if the answer is YES, please prove it; if the answer is NO, please provide a counter-example.
+  \begin{enumerate}[(a)]
+  \item Let $\wedge$ denote the bit-wise \emph{and} operation. Is $G((0^{n-1}||1) \wedge s)$ a secure pseudorandom generator that expands a random seed of length $n$ into a pseudorandom string of length $2n$? 
+
+  \item Is $G\left(\text{first half of } G(s)\right) || G\left(\text{second half of } G(s)\right)$ a secure pseudorandom generator that maps $n$ bits to $4n$ bits?
+  \end{enumerate}
+\end{exercise}
+
+\begin{answer}
+Write solution here
+  \begin{enumerate}[(a)]
+
+  \item 
+
+  \item  
+  \end{enumerate}
+
+\end{answer}
+
+% ====================================================================
+% ====================================================================
+
+\begin{exercise}
+  \textbf{(10 points)} Determine whether the following $F$ is a pseudorandom function. If yes, prove it; if not, describe and analyze a feasible distinguisher that has non-negligible advantage in distinguishing $F$ from random function family. (Hint: consider the excercise example from lecture 6)\\\\
+      $F_k(x) : = G(x) \oplus k$ where $G(s)$ is a PRG.
+\end{exercise}
+
+\begin{answer}
+Write solution here
+\end{answer}
+
+\begin{exercise}
+  \textbf{(10 points)} Give a distinguisher that has non-negligible advantage in distinguishing the following $F'$ from a random function family.\\\\
+      $F'_{k_1 || k_2}(x_1 || x_2) := F_{k_1}(x_1) || F_{k_2}(x_2)$ where $F$ is a PRF and $|x_1| = |x_2|$. Here $k_1$ and $k_2$ are drawn uniformly from the keyspace of $F$.
+\end{exercise}
+
+\begin{answer}
+Write solution here
+\end{answer}
+
+% ====================================================================
+% ====================================================================
+
+
+\begin{exercise}
+  \textbf{(30 points)} Consider two encryption schemes 
+$\Pi_1 = (\mathsf{Gen}_1, \mathsf{Enc}_1, \mathsf{Dec}_1)$ and 
+$\Pi_2 = (\mathsf{Gen}_2, \mathsf{Enc}_2, \mathsf{Dec}_2)$ 
+over the key space $\mathcal{K}$, message space $\mathcal{M}$ and ciphertext $\mathcal{C}$. 
+Suppose that $\mathcal{K} = \mathcal{M} = \mathcal{C}$.
+Now suppose that at least one of $\Pi_1$ and $\Pi_2$ is 
+CPA secure but you do not know which one. 
+Construct a CPA secure encryption scheme using $\Pi_1$ and $\Pi_2$.
+\\\\
+Please describe your construction and prove it CPA secure, assuming that at least
+one of the underlying encryption schemes is CPA secure.
+Besides the two encryption schemes $\Pi_1$ and 
+$\Pi_2$, 
+please do not use other cryptographic 
+primitives in your construction.
+\\\\
+(Note: such a scheme is called a cryptographic ``combiner''.
+A cryptographic
+combiner can be used to hedge your risk. For example,
+suppose that the two encryption schemes rely on different hardness assumptions.
+The ``combiner'' approach
+allows you to design 
+an encryption scheme as long as 
+one of the underlying encryption schemes remains secure.)
+\end{exercise}
+
+\begin{answer}
+Write solution here
+\end{answer}
+
+
+
+% ====================================================================
+% ====================================================================
+
+\end{document}

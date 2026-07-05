@@ -1,0 +1,282 @@
+\documentclass[11pt,addpoints]{exam}
+\usepackage{fullpage}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{enumerate}
+\usepackage{listings}
+\usepackage[boxed]{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage[inline,shortlabels]{enumitem}
+\usepackage{subcaption}
+
+% in order to compile this file you need to get 'header.tex' from
+% Canvas and change the line below to the appropriate file path
+\input{header}
+
+\newcommand{\hwnum}{7}
+\newcommand{\duedate}{March 20}
+
+\hwheader   % header for homework
+
+% Comment the following line in order to hide solutions.
+% Uncomment the line to show solutions written inside of
+% LaTeX solution environments like:
+%   \begin{solution}
+%     My solution.
+%   \end{solution}.
+
+\begin{document}
+
+\printanswers
+
+\hwpreface
+
+\pointsinmargin
+\pointpoints{pt}{pts}
+\bonuspointpoints{EC pt}{EC pts}
+\marginpointname{ \points}
+\marginbonuspointname{ \bonuspoints}
+
+% Languages and deciders 
+\newcommand{\atm}{L_{\text{ACC}}}
+\newcommand{\htm}{L_{\text{HALT}}}
+\newcommand{\Tr}{\leq_T}
+
+\newcommand{\eecs}{L_{\text{EECS}}}
+\newcommand{\dis}{L_{\text{DISJOINT}}}
+\newcommand{\odd}{L_{\text{ODD}}}
+\newcommand{\todd}{L_{\text{TURING-ODD}}}
+
+\newcommand{\dacc}{D_{\text{ACC}}}
+\newcommand{\deecs}{D_{\text{EECS}}}
+\newcommand{\ddis}{D_{\text{DISJOINT}}}
+
+\newcommand{\SAT}{\text{SAT}}
+\newcommand{\AffordableMenu}{\textsc{AffordableMenu}}
+\newcommand{\IndSet}{\textsc{IndependentSet}}
+
+% Commands for complexity classes and reductions
+\newcommand{\NP}{\textsf{NP}}
+\newcommand{\PP}{\textsf{P}}
+\newcommand{\EXP}{\textsf{EXP}}
+\newcommand{\coNP}{\textsf{coNP}}
+\newcommand{\NPComplete}{\NP\text{-Complete}}
+\newcommand{\NPHard}{\NP\text{-Hard}}
+\newcommand{\ptimemap}{\leq_p}
+\newcommand{\tred}{\leq_T}
+
+\begin{questions}
+  \addtocounter{question}{-1}
+
+  \question[0] \textbf{Before you start; before you submit.}
+  
+  If applicable, state the name(s) and uniqname(s) of your collaborator(s).
+
+  \begin{solution}
+
+  \end{solution}
+  
+  \question[10] \textbf{Self assessment.}
+  
+  Carefully read and understand the posted solutions to the previous homework; you may also find the video ``walkthroughs'' in the Canvas Media Gallery helpful.
+  Identify one part for which your own solution has the most room for improvement (e.g., has unsound reasoning, doesn’t show what was required, could be significantly clearer or better organized, etc.).
+  Copy or screenshot this solution, then in a few sentences, explain what was deficient and how it could be fixed.
+
+  (Alternatively, if you think one of your solutions is significantly \emph{better} than the posted one, copy it here and explain why you think it is better.)
+
+  If you didn't turn in the previous homework, then (1)~state that you didn't turn it in, and (2)~pick a problem that you think is particularly challenging from the previous homework, and explain the answer in your own words.
+  You may reference the answer key, but your answer should be in your own words.
+
+  \begin{solution}
+
+  \end{solution}
+
+  \question \textbf{Deciding undecidability.}
+
+  For each of the following languages, show that it is undecidable via a Turing reduction from a language we have already shown is undecidable.
+
+  (As a refresher, you may wish to re-read \href{https://drive.google.com/file/d/1PD6hTzUNgU3oUzA2YbcIkSP7i33B5oAr/view?usp=drive_link}{Handout 2: Turing Reductions.})
+
+  \begin{parts}
+    \part[10] $\dis = \set{(\inner{M_1}, \inner{M_2}) : M_1, M_2 \text{ are TMs and } L(M_1) \cap L(M_2) = \emptyset}$.
+    
+    \begin{solution}
+      
+    \end{solution}
+
+    \pagebreak
+  
+    \part[10] Let $S = \set{\inner{183},\inner{280},\inner{281},\inner{370},\inner{376}}$ and define the language
+    \[ \eecs = \set{\inner{M} : \text{$M$ is a TM that accepts every string in $S$ and loops on every other string}} \; \text.
+    \]
+      
+    \begin{solution}
+      
+    \end{solution}
+  \end{parts}
+
+  \question \textbf{$\NP$ languages.}
+  Prove that each of the following languages is in $\NP$.
+     
+  \begin{parts}
+    \part[7] 
+    $\AffordableMenu = \{\inner{L, k} : L $ is a list of menu items with positive integer prices, and there are at least~$k$ distinct menu items that have total price \emph{exactly}~$10k \}$.
+       
+    \begin{solution}
+      
+    \end{solution} 
+    
+    \part[7] 
+    $\IndSet = \set{ \inner{G, k} : G \text{ is an undirected graph with an independent set of size } k }$.
+
+    An independent set in a graph is a subset~$C$ of the vertices for which the graph has no edge between any pair of vertices in~$C$.
+    
+    \begin{solution}
+      
+    \end{solution}
+  \end{parts}
+
+  \question \textbf{Understanding $\PP$, $\NP$, and poly-time mapping reductions.}
+  
+  \begin{parts}
+        
+    \part[7] We claim that $\PP \subseteq \NP$, i.e., for any language $L \in \PP$, we have that $L \in \NP$ as well.
+    Here is an \emph{incomplete} proof of this fact, which you will complete.
+    
+    By the hypothesis that $L \in \PP$, there is an efficient Turing machine~$M$ that decides~$L$.
+    We define the following efficient verifier~$V$ for~$L$.
+    
+    \begin{algorithmic}[1]
+      \Function{$V$}{$x,c$}
+      \State \textbf{[MISSING PSEUDOCODE]}
+      \EndFunction
+    \end{algorithmic}
+    
+    State what the missing pseudocode should be, and prove that~$V$ is indeed an efficient verifier for~$L$.
+
+    \begin{solution}
+      
+    \end{solution}   
+
+    \part[10] Show that poly-time mapping reductions are transitive.
+    That is, if $A \ptimemap B$ and $B \ptimemap C$, then $A \ptimemap C$.
+
+    \begin{solution}
+      
+    \end{solution}
+
+    \part[10] Let $C = A \cup B$ where both $A, B$ are languages in $\NP$.
+    State, with proof, whether~$C$ is in $\NP$ for \emph{all}, \emph{some} (but not all), or \emph{no} such $A,B$.
+         
+    \begin{solution}
+     
+    \end{solution}
+  \end{parts}
+
+  \pagebreak
+
+  \question \textbf{Understanding $\coNP$.}
+  
+  This question explores the complexity class $\coNP = \set{\overline{L} : L\in\NP}$, i.e., the set of languages whose complement languages are in $\NP$.
+  (Note that this is \emph{not} the complement of $\NP$ itself, which is the set of languages that are not in $\NP$.)
+  
+  Recall that conceptually, $\NP$ is the set of languages whose ``yes'' instances can be verified efficiently, given suitable certificates.
+  Symmetrically, $\coNP$ is the set of languages whose ``no'' instances can be verified efficiently (given suitable certificates).
+    
+  \begin{parts}
+    
+  \part[5] Prove that $\PP$ is closed under set complement.
+    That is, for any $L \in \PP$, we have that $\overline{L} \in \PP$.
+      
+    \begin{solution}
+     
+    \end{solution}
+
+  \part[9] Use the previous part to prove that if $\PP = \NP$, the following set inclusions hold: (i)~$\NP \subseteq \coNP$ (that is, for any $L \in \NP$, we have $L \in \coNP$), and (ii)~$\coNP \subseteq \NP$.
+
+    \begin{solution}
+      
+    \end{solution}
+    
+  \part[5] Conclude from the previous part that if $\NP\neq\coNP$, then $\mathsf{P}\neq\NP$.
+    
+    (Therefore, you could collect the \$1 million Clay Math prize ``simply'' by proving that $\NP \neq \coNP$!)
+      
+    \begin{solution}
+      
+    \end{solution}
+  \end{parts}
+  
+  \question[10] \textbf{Cook-Levin windows.}
+
+  Recall from lecture that one critical ingredient in the proof of the Cook-Levin theorem is to specify which contents of the $2\times 3$ ``windows'' of the verifier's computation tableau are valid.
+
+  Specify \emph{all} valid $2 \times 3$ window contents that could appear in two adjacent rows of the tableau, if those rows represent the verifier TM taking the following transition:
+  \begin{center}
+    \begin{tikzpicture}
+      % Draw circles
+      \node[circle,draw,thick] (qa) at (0,0) {$q_a$};
+      \node[circle,draw,thick] (qb) at (3,0) {$q_b$};
+      
+      % Connect circles with arrow
+      \draw[->, thick] (qa) -- (qb) node[midway, above] {$0\to 1,R$};
+    \end{tikzpicture}
+  \end{center}
+  You do not need to provide justification.
+
+  For simplicity, you can assume that the symbols in the cells of the window are restricted to $\set{0, 1, \bot,q_a,q_b}$.
+  Recall that there can be other symbols in the rows, such as the ``boundary'' symbol~$\#$ and ``separator'' symbol $\$$, but we will ignore those here.
+  To avoid explicitly writing out too many windows, you can use notation like $0/1/\bot$ to indicate that a cell could contain either $0$, $1$, or~$\bot$.
+  Also, to specify that a cell in the bottom row of a window must contain the same character as the cell above it, you can write ``same''.
+  For example, writing
+  \[\begin{array}{|c|c|c|}
+      \hline
+      0/1 & \bot & 1 \\
+      \hline
+      \text{same} & 0 & \bot \\
+      \hline
+    \end{array}
+  \]
+  represents the following two windows:
+  \[
+  \begin{array}{|c|c|c|}
+      \hline
+      0 & \bot & 1 \\
+      \hline
+      0 & 0 & \bot \\
+      \hline
+    \end{array}
+  \quad
+  \begin{array}{|c|c|c|}
+      \hline
+      1 & \bot & 1 \\
+      \hline
+      1 & 0 & \bot \\
+      \hline
+  \end{array}
+  \]
+  
+  Be sure to include all valid window contents that represent the head of the TM being in \emph{both} rows of the window, all those that represent the head being in \emph{only one} of the rows of the window, and all those that represent the head not being in the window at all.
+  Do not include any invalid windows.
+
+  \begin{solution}
+   
+   \end{solution}
+
+   \bonusquestion[5] \textbf{Optional extra-credit problem: $\NP$ in exponential time.}
+
+   Let $\EXP$ be the class of all languages that are decidable in exponential time, i.e., in time $O(2^{n^k})$ for some constant $k$ (where $n$ is the length of the input).
+
+   It remains unknown whether $\NP=\EXP$, but it is known that $\PP \neq\EXP$.
+   Prove that $\NP\subseteq\EXP$.
+   In other words, show that any problem that can be verified efficiently can be decided in exponential time.
+
+   \begin{solution}    
+     
+   \end{solution}
+
+\end{questions}
+
+\end{document}

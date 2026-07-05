@@ -1,0 +1,282 @@
+\documentclass[12pt]{hw}
+\usepackage{graphicx}
+\usepackage{float}
+
+
+%====================================================================
+% IMPORTANT INFORMATION TO FILL OUT:
+%====================================================================
+\usepackage{amsthm}
+\newtheorem{definition}{Definition}
+\newcommand{\getr}{\ensuremath{{\overset{\$}{\leftarrow}}}\xspace}
+\newcommand{\Gen}{\ensuremath{{\sf Gen}}\xspace}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\G}{\mathbb{G}}
+\newcommand{\Dec}{\ensuremath{{\sf Dec}}\xspace}
+\newcommand{\Enc}{\ensuremath{{\sf Enc}}\xspace}
+% ENTER YOUR NAME HERE:
+\renewcommand{\student}{ YOUR NAME HERE (uniqname here) }
+
+% LIST ALL COLLABORATORS HERE:
+\renewcommand{\collaborators}{Name/Exercise Number(s), Name/Exercise Numbers (s)}
+
+%====================================================================
+%====================================================================
+
+\setcounter{sheet}{4} % Homework number here
+
+\begin{document}
+
+\maketitle
+
+\begin{center} Due: Nov 7, 2024 (at 11:59 PM US Eastern Time) \\[10pt]
+  \hrule height 1pt
+\end{center}
+
+\toggletrue{answers}
+% \togglefalse{answers}
+
+\setcounter{MaxMatrixCols}{20} \setlength\parindent{0pt}
+
+% =============================================================================
+% =============================================================================
+
+
+% ===============================================
+% ===============================================
+
+\begin{exercise}
+{\bf (15 points)}
+Prove that any public key encryption (even randomized) cannot be perfectly secure. 
+(Hint: Consider a brute force attack.)
+\end{exercise}
+\begin{answer}
+Write Solution Here.
+\end{answer}
+% =============================================================================
+
+
+\begin{exercise}
+     {\bf (20 points)} Let $n\in\Z$ be a positive integer. Consider the
+    following set $$\G_n := \{ an + 1 \mid a \in \{0, \ldots, n-1\} \}.$$
+    Every element of $\G_n$ also belongs to the multiplicative group $\Z_{n^2}^*$ (recall that  $\Z_{n^2}^*$ contains all integers from $\{0,...,n^2-1\}$ that are coprime with $n^2$.)
+
+    Show that $\G_n$ is a multiplicative subgroup of $\Z_{n^2}^*$. That is, for the multiplication module $n^2$ operation, the
+            elements of $G_n$ satisfy the following group axioms:
+            \begin{itemize}
+              \item \textit{Closure: }For every $g_1, g_2 \in \G_n$, $g_1\cdot
+                      g_2 \in \G_n$.
+              \item \textit{Identity: }There exists an element $e \in \G_n$ such
+                    that for every $g \in \G_n$, $e\cdot g = g\cdot e = g$.
+              \item \textit{Inverse: }For every $g \in \G_n$, there exists a $g^
+                        {-1} \in \G_n$ such that $g\cdot g^{-1} = g^{-1}\cdot g = e$.
+              \item \textit{Associativity: } For all $g, h, k \in \G_n$, $g\cdot
+                      (h\cdot k) =(g\cdot h)\cdot k$.
+            \end{itemize}
+\end{exercise}
+
+\begin{answer}
+  Write Solution Here.
+\end{answer}
+
+
+% =============================================================================
+\begin{exercise}
+{\bf (20 points)}
+    Consider the Computational Diffie-Hellman assumption (CDH):
+\begin{definition}[\bf{Computational Diffie-Hellman (CDH)}]
+    Consider the following experiment
+    \begin{mdframed}
+        $\textbf{Experiment } \mathsf{CDH}^{\mathcal{A}, \mathcal{G}}(1^n)$.
+        \begin{itemize}
+            \item Run $\mathcal{G}(1^n)$ to obtain $(\mathbb{G}, q, g)$, where $\mathbb{G}$ is a cyclic group of prime order $q$  and $g$ is a generator of $\mathbb{G}$.
+            \item Let $a, b\ \sample \mathbb{Z}_q$
+            \item $u \gets \mathcal{A}(\mathbb{G}, q, g, g^a, g^b)$
+            \item Output $1$ if $u = g^{ab}$.
+        \end{itemize}
+        \end{mdframed}
+    We say that a p.p.t. adversary $\mathcal{A}$ breaks the $\sf{CDH}$ if
+    \begin{align*}
+        \Pr[\mathsf{CDH}^{\mathcal{A}, \mathcal{G}}(1^n)=1] \geq \frac{1}{p(n)}
+    \end{align*}
+    for some polynomial $p(\cdot)$.
+\end{definition}
+
+
+Also recall the Discrete Logarithm Assumption (DLOG) and the Decisional Diffie-Hellman Assumption (DDH).
+\begin{definition}[\bf{Discrete Logarithm Assumption (DLOG)}]
+    Consider the following experiment
+    \begin{mdframed}
+        $\textbf{Experiment } \mathsf{DLOG}^{\mathcal{A}, \mathcal{G}}(1^n)$.
+        \begin{itemize}
+            \item Run $\mathcal{G}(1^n)$ to obtain $(\mathbb{G}, q, g)$, where $\mathbb{G}$ is a cyclic group of prime order $q$  and $g$ is a generator of $\mathbb{G}$.
+            \item Let $h \sample \mathbb{G}$
+            \item Let $x \gets \mathcal{A}(\mathbb{G}, q, g, h)$
+            \item Output $1$ if $g^x = h$.
+        \end{itemize}
+    \end{mdframed}
+    We say that a p.p.t. adversary $\mathcal{A}$ breaks the discrete logarithm problem if
+    \begin{align*}
+        \Pr[\mathsf{DLOG}^{\mathcal{G}, \mathcal{A}}(1^n)=1] \geq \frac{1}{p(n)}.
+    \end{align*}
+    for some polynomial $p(\cdot)$.
+\end{definition}
+\begin{definition}[\bf{Decisional Diffie-Hellman (DDH)}]
+    Consider the following experiment
+    \begin{mdframed}
+        $\textbf{Experiment } \mathsf{DDH}_b^{\mathcal{A}, \mathcal{G}}(1^n)$.
+        \begin{itemize}
+            \item Run $\mathcal{G}(1^n)$ to obtain $(\mathbb{G}, q, g)$, where $\mathbb{G}$ is a cyclic group of prime order $q$  and $g$ is a generator of $\mathbb{G}$.
+            \item Let $x, y, z\ \sample \mathbb{Z}_q$
+            \item If $b = 0$, $\mathcal{A}$ is given $(\mathbb{G}, q, g, g^x, g^y, g^z)$, else $\mathcal{A}$ is given $(\mathbb{G}, q, g, g^x, g^y, g^{xy})$
+            \item Output $\mathcal{A}'s$ output.
+        \end{itemize}
+    \end{mdframed}
+We say that a p.p.t. adversary $\mathcal{A}$ breaks the DDH problem if
+\begin{align*}
+    \vert \Pr[\mathsf{DDH}_0^{\mathcal{G}, \mathcal{A}}(1^n) = 1] - \Pr[\mathsf{DDH}_1^{\mathcal{G}, \mathcal{A}}(1^n) = 1] \vert \geq \frac{1}{p(n)}.
+\end{align*}
+for some polynomial $p(\cdot)$.
+\end{definition}
+
+
+
+% (weakest) Adv DLOG -> Adv CDH -> Adv DDH (strongest)
+\begin{enumerate}
+    
+    % \item Which of the following assumptions is at least as strong as the other two. That is, if there exists an adversary for either of the two other assumptions, there must exist an adversary for this assumption.
+    % \begin{enumerate}
+    %     \item \textsf{CDH}
+    %     \item \textsf{DLOG}
+    %     \item \textsf{DDH}
+    % \end{enumerate}
+    % % \item Among the provided assumptions, which is the \emph{weakest}. That is, even if there exists adversaries for the other two assumptions, there may not exist an adversary for this assumption.    
+    % \item Which of the following assumptions is at most as strong as the other two. That is, if there exists an adversary for this assumption, then there must exist an adversary for the other two assumptions.
+    % \begin{enumerate}
+    %     \item \textsf{CDH}
+    %     \item \textsf{DLOG}
+    %     \item \textsf{DDH}
+    % \end{enumerate}
+    % \item If Alice wants to build a cryptosystem with its security based on a number theoretic hardness assumption, which of the following assumptions is the safest to make.
+    % \begin{enumerate}
+    %     \item \textsf{CDH}
+    %     \item \textsf{DLOG}
+    %     \item \textsf{DDH}
+    % \end{enumerate}
+    
+    \item Show that if there exists a p.p.t. adversary $\mathcal{A}$ that breaks the DLOG problem, then there exists a p.p.t. adversary $\mathcal{B}$ that breaks the CDH problem.
+
+    \item Show that if there exists a p.p.t. adversary $\mathcal{B}$ that breaks the CDH problem, then there exists a p.p.t. adversary $\mathcal{C}$ that breaks the DDH problem.
+
+\end{enumerate}
+\end{exercise}
+\begin{answer}
+Write Solution Here.
+\end{answer}
+% =============================================================================
+
+
+\begin{exercise}
+{\bf (25 points)}
+    Alice and Bob
+want to securely compute the following circuit using a garbled circuit scheme.
+In the following circuit, 
+The input wires marked $A$ and $C$ are Alice's input,
+and the input wires 
+marked $B$ and $D$ are Bob's input.
+Alice will act as the garbler, and Bob will act as the evaluator.
+
+\begin{figure}[H]
+        \centering
+        \includegraphics[scale = 0.6]{garbled.png}
+        \caption{The circuit and the garbled labels on each wire.}
+        \label{fig:insert}
+\end{figure}
+
+Alice does not want to make computational assumptions. 
+Therefore, she  
+decides to encrypt the truth table for each gate using a variant of one-time pad instead. 
+Specifically for the circuit above, she randomly picks label for each wire as follows:
+\begin{itemize}
+    \item $G_0, G_1\getr\{0,1\}^n$.
+    \item $E_b,F_b\getr\{0,1\}^{2n}$ for $b\in\{0,1\}$.
+    \item $A_b, B_b, C_b, D_b\getr\{0,1\}^{3n}$ for $b\in\{0,1\}$.
+\end{itemize}
+
+Then to encrypt each entry in the truth table, Alice uses the following scheme.
+\begin{itemize}
+    \item $\Enc_{k,k'}(m):$ output $c = k\oplus k'\oplus(0^n\|m)$.
+    \item $\Dec_{k,k'}(c):$ compute $m_0\|m_1 = c\oplus k\oplus k'$ where $m_0=|n|$. If $m_0 = 0^n$, output $m_1$; otherwise, output $\bot$.
+\end{itemize}
+For example, for the first AND gate, Alice computes 
+\begin{center}
+    \begin{tabular}{|c|} 
+    \hline
+    $\Enc_{A_0,B_1}(E_0)$\\
+    \hline
+    $\Enc_{A_1,B_0}(E_0)$\\
+    \hline
+    $\Enc_{A_0,B_0}(E_0)$\\
+    \hline
+    $\Enc_{A_1,B_1}(E_1)$\\
+    \hline
+    \end{tabular}
+\end{center}
+
+
+Unfortunately, this encryption makes the garbled circuit insecure and leaks additional information beyond the inherent leakage (i.e., what is already leaked by the output). 
+In this question, you are asked to  
+show that Bob can break the security of the scheme step by step guided
+by our hints. 
+
+
+Suppose Bob's input is $0$ to wire $B$ and $1$ to wire $D$. We do not know Alice's input to wire $A$ and to wire $C$. Note that Bob only gets the garbled circuit, garbled input, and the output wire labels.
+\begin{enumerate}[(a)]
+    \item Describe how Bob can compute both $E_0$ and $E_1$ given the garbled truth tables.
+
+    \item Suppose Alice's input for wire $C$ is $c\in\{0,1\}$. Let $\theta = 1 \oplus c$. By the protocol, Bob should be able to learn $F_{\theta}$. Describe how Bob can tell whether $F_{\theta} = F_0$ or $F_{\theta} = F_1$.
+
+    \item Describe how Bob can compute Alice's input for wire $C$.
+
+    \item Show that if Bob's input is $0$ on wire $B$ and $1$ on wire $D$, 
+then Bob should not learn $c$, i.e., Alice's input on wire $C$,
+in a secure 2-party computation scheme. 
+
+%Alice's input to 
+%the input wire $C$ in a secure garbled circuit scheme.
+\end{enumerate}
+\end{exercise}
+
+\begin{answer} 
+Write Solution Here.
+\end{answer}
+
+
+
+% =============================================================================
+\begin{exercise}
+{\bf (20 points)}
+    Alice and Bob
+    want to securely compute the following circuit using a garbled circuit scheme.
+    In the following circuit, 
+    The input wires marked $A$ and $C$ are Alice's inputs,
+    and the input wires 
+    marked $B$ and $D$ are Bob's inputs.
+    Alice will act as the garbler, and Bob will act as the evaluator. 
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale = 0.6]{mid-circuit.png}
+        \caption{The circuit and the garbled labels on each wire.}
+        \label{fig:insert}
+\end{figure}
+    
+    Let $\widehat{g}_1, \widehat{g}_2, \widehat{g}_3$ be the garbled gates of $g_1,g_2$ and $g_3$, respectively. The input labels are plotted in the figure. In this problem, we assume that all labels are of length $n$. Now suppose that an adversary Charlie learns the circuit, the garbled gates $\hat{g}_1$, $\hat{g}_2$ and $\hat{g}_3$, output wire labels $G_0,G_1$, as well as input wire labels $A_0, A_1, B_b, C_c, D_d$, where $b,c,d\in\{0,1\}$ are the inputs to the input wire labeled $B,C$ and $D$, respectively. Show how Charlie can use this information to learn at least one input out of $b$, $c$, or $d$ with probability $1-\sf{negl}(n)$ for some negligible function ${\sf negl}$. (Hint: How should the output of an AND gate change when you change one of the inputs? What does this tell you about the other input?)
+\end{exercise}
+\begin{answer}
+Write Solution Here.
+\end{answer}
+
+% =============================================================================
+
+\end{document}

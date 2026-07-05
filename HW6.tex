@@ -1,0 +1,259 @@
+\documentclass[11pt,addpoints]{exam}
+\usepackage{fullpage}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{enumerate}
+\usepackage{listings}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  urlcolor=blue
+}
+\usepackage[boxed]{algorithm}
+\usepackage[noend]{algpseudocode}
+\algrenewcommand\algorithmicrequire{\textbf{Input:}}
+\algrenewcommand\algorithmicensure{\textbf{Output:}}
+
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{wasysym}
+\usepackage{xstring}
+\usepackage{tikz}
+\usetikzlibrary{automata,arrows}
+
+\usepackage{ducksay}
+
+\newcommand{\htm}{L_{\text{HALT}}}
+
+% in order to compile this file you need to get 'header.tex' from
+% Canvas and change the line below to the appropriate file path
+\input{header}
+
+\newcommand{\hwnum}{6}
+\newcommand{\duedate}{February 22}
+
+\hwheader   % header for homework
+
+% Comment the following line in order to hide solutions.
+% Uncomment the line to show solutions written inside of
+% LaTeX solution environments like:
+% \begin{solution}
+%   My solution.
+% \end{solution}.
+
+\newcommand{\concat}{||}
+\renewcommand{\phi}{\varphi}
+\newcommand{\Tr}{\leq_T}
+\newcommand{\tab}{\hspace{5mm}}
+\newcommand{\mr}{\leq_\mathrm{m}}
+\newcommand{\TMdesc}[1]{\inner{#1}}
+
+\printanswers
+
+\begin{document}
+
+\hrule
+\medskip
+
+\noindent \textbf{This homework is due 24 hours later than usual, on \emph{Thursday} 2/22 at 8pm.
+  This is because some of the questions (labeled below) rely on the lecture on 2/19.}
+\medskip
+\hrule
+
+\medskip
+
+\hwpreface
+
+\pointsinmargin
+\pointpoints{pt}{pts}
+\bonuspointpoints{EC pt}{EC pts}
+\marginpointname{ \points}
+\marginbonuspointname{ \bonuspoints}
+
+\begin{questions}
+  \addtocounter{question}{-1}
+  \question[0] \textbf{Before you start; before you submit.}
+  
+  If applicable, state the name(s) and uniqname(s) of your collaborator(s).
+
+  \begin{solution}
+
+  \end{solution}
+
+  \question[10] \textbf{Self assessment.}
+  
+  Carefully read and understand the posted solutions to the previous homework; you may also find the video ``walkthroughs'' on Canvas helpful.
+  Identify one part for which your own solution has the most room for improvement (e.g., has unsound reasoning, doesn’t show what was required, could be significantly clearer or better organized, etc.).
+  Copy or screenshot this solution, then in a few sentences, explain what was deficient and how it could be fixed.
+
+  (Alternatively, if you think one of your solutions is significantly \emph{better} than the posted one, copy it here and explain why you think it is better.)
+
+  If you didn't turn in the previous homework, then (1) state that you didn't turn it in, and (2) pick a problem that you think is particularly challenging from the previous homework and explain the answer in your own words. You may reference the answer key, but your answer is to be in your own words.
+
+  \begin{solution}
+    
+  \end{solution}
+
+  \question \textbf{A powerful diagonalization.}
+
+  \begin{parts}
+
+    \part[7] The \emph{power set} of a set $A$, denoted $\mathcal{P}(A)$, is defined as the \emph{set of all subsets} of~$A$.
+    For example, $\mathcal{P}(\bit)=\set{\emptyset,\set{0},\set{1},\bit}$.
+    
+    Use diagonalization to prove that for any \emph{countably infinite} set~$A$, the power set $\mathcal{P}(A)$ is \emph{uncountably} infinite.
+    
+    \hint{View each subset as an infinite binary sequence representing whether each element of~$A$ is included in the subset or not.}
+    
+    \begin{solution}
+     
+    \end{solution}
+    
+    \part[6] Prove that any infinite language $L \subseteq \Sigma^*$ has an undecidable subset $L' \subseteq L$.
+    
+    \hint{Part (a) will be useful.}
+    
+    \begin{solution}
+      
+    \end{solution}
+  \end{parts}
+  
+  \question \textbf{Turing machines.}
+  
+  \begin{parts}
+    \part[7] Go to \href{https://turingmachine.io/}{https://turingmachine.io/} and step through the example code that adds 1 to an input integer (represented as a binary string).
+    Modify this machine to add~2 instead of~1 (scroll down on the page for instructions on how to write the code).
+    Give a picture or screenshot of your new machine as your solution.
+    You do not need to provide justification.
+
+    \begin{solution}
+      
+      % The following is LaTeX code for inserting an image, uncomment to use
+      % Place the image in the same folder as hw6.tex
+      \begin{figure}[H]
+        \centering
+        % Replace hachi.png with your image name
+        % Adjust the scale factor to make the image bigger or smaller
+        \includegraphics[scale=0.25]{hachi.jpg}
+      \end{figure}
+    
+    \end{solution}
+    
+    \part[8] 
+    Let $L$ be the language of all binary strings that represent non-negative integers that are divisible by 4:
+    \[ L = \set{\inner{s} : s \bmod{4} = 0} \cup \set{\varepsilon}.
+    \] Note that leading zeroes in the representation are acceptable, i.e.,~$000101010$ and $101010$ both represent $42$.
+    Also, we define $\varepsilon$ to represent~$0$.
+
+    Draw a state-machine diagram for a Turing machine that decides~$L$.
+    This drawing can be done however you like (hand-drawn, using \href{https://turingmachine.io/}{https://turingmachine.io/}, drawn in latex, etc.), as long as it is readable.
+    No justification is necessary.
+    
+    \hint{How is the last bit of the binary representation of an integer related to whether the integer is divisible by~2?
+      Can you extend this observation to divisibility by~4?}
+    
+    \begin{solution}
+      
+    \end{solution}
+  \end{parts}
+
+  \question \textbf{Decidability.}
+
+  \begin{parts} 
+    
+    \part[7] Prove or disprove: any finite language is decidable.
+
+    \begin{solution}
+      
+    \end{solution}
+    
+    \part[5] 
+    Let $L = (L_1 \setminus L_2) \cap L_3$, where $L_1, L_2,$ and $L_3$ are \emph{decidable} languages.
+    State whether~$L$ is decidable for \textbf{all}, \textbf{some} (but not all), or \textbf{no} such $L_1, L_2, L_3$, and prove it.
+    
+    Note: $A \setminus B := \set{x \in A: x \notin B}$ denotes the \emph{set difference} between~$A$ and~$B$.
+    
+    \begin{solution}
+      
+    \end{solution}
+    
+    \part[7] Let $L = L_1 \cap L_2$, where $L_1$ and $L_2$ are both \emph{undecidable}.
+    State whether $L$ decidable for \textbf{all}, \textbf{some} (but not all), or \textbf{no} such $L_1, L_2$, and prove it.
+    
+    \begin{solution}
+      
+    \end{solution}
+  \end{parts}
+
+  \question {\textbf{Haltchecker.}
+    (Warning: This problem is related to material from the lecture on 2/19.)}
+  
+  \begin{parts}
+    \part[8] Recall from lecture the definition $L_{\text{HALT}} := \set{(\langle M\rangle, x) : M \text{ halts on input } x}$.
+    In class you saw a Turing reduction from $L_{\text{ACC}}$ to $L_{\text{HALT}}$, proving that $L_{\text{HALT}}$ is undecidable.
+    
+    \href{https://www.udiprod.com/halting-problem/}{This linked video} describes a different argument that $L_{\text{HALT}}$ is undecidable, without using a reduction.
+    
+    Formalize the argument in the video as a rigorous proof.
+
+    \begin{solution}
+     
+    \end{solution}
+
+    \part[7] Consider the following language:
+    \[ L_{\mathrm{HALT}<2^{\abs{x}}}=\set{(\inner{M}, x) : M(x) \text{ halts within } 2^{\abs{x}} \text{ steps}} \; \text.
+    \] Prove or disprove: $L_{\mathrm{HALT}<2^{\abs{x}}}$ is decidable.
+    
+    \begin{solution}
+      
+    \end{solution}
+  \end{parts}
+  
+  \question \textbf{Turing reductions.} (Warning: This problem relies on material from the lecture on 2/19.) 
+
+  \textbf{Before embarking on this problem, read \href{https://drive.google.com/file/d/1PD6hTzUNgU3oUzA2YbcIkSP7i33B5oAr/view?usp=drive_link}{Handout 2: Turing Reductions.}}
+  
+  \begin{parts}
+    \part[7] Prove or disprove: if $L \leq_T L'$ for some language $L'$, then $L$ is decidable.
+    
+    \begin{solution}
+     
+    \end{solution}
+    
+    \part[7] Prove or disprove: $L \leq_T L'$ for any decidable language $L$ and any language $L'$.
+    
+    \begin{solution}
+      
+    \end{solution}
+    
+    \part[7] 
+    Define \[ L_{\text{AND-LOOP}} = \set{(\langle M\rangle,x,y) : M \text{ is a TM that loops on input $x$ and loops on input $y$}} \; \text.
+    \] Prove that $L_{\text{HALT}} \Tr L_{\text{AND-LOOP}}$.
+    Note that since $L_{\text{HALT}}$ is undecidable, this means that $L_{\text{AND-LOOP}}$ is undecidable.
+    
+    \begin{solution}
+      
+    \end{solution}
+
+    \part[7] Let $L_{\text{SELF-LOOP}} = \set{\langle M\rangle : M \text{ is a TM that loops on input } \langle M\rangle}$.
+    Prove that $L_{\text{SELF-LOOP}}$ is undecidable, via a Turing reduction from a problem that we proved undecidable in class.
+
+    \begin{solution}
+      
+    \end{solution}
+  \end{parts}
+  
+  \bonusquestion[5] \textbf{Optional extra credit: An interesting language.}
+
+  Recall that a language~$L$ is \emph{recognizable} if there is a Turing machine that accepts every string in~$L$, and either rejects \emph{or loops} on every string not in~$L$.
+
+  Prove that there exists a language~$L$ where neither~$L$ nor its complement $\overline{L}$ is recognizable.
+
+  \begin{solution}
+    
+  \end{solution}
+  
+\end{questions}
+
+\end{document}

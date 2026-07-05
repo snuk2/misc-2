@@ -1,0 +1,299 @@
+\documentclass[11pt,addpoints]{exam}
+\usepackage{fullpage}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{enumerate}
+\usepackage{listings}
+\usepackage[boxed]{algorithm}
+\usepackage[noend]{algpseudocode}
+
+\usepackage[basic, langfont=caps]{complexity}
+
+\algrenewcommand\algorithmicrequire{\textbf{Input:}}
+\algrenewcommand\algorithmicensure{\textbf{Output:}}
+
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage[inline,shortlabels]{enumitem}
+\usetikzlibrary{automata, positioning, arrows}
+\usepackage{subcaption}
+
+% in order to compile this file you need to get 'header.tex' from
+% Canvas and change the line below to the appropriate file path
+\input{header}
+
+\newlang{\HamCycle}{HamCycle}
+\newlang{\VertCov}{VertexCover}
+\newlang{\TSAT}{3SAT}
+\newlang{\SubsetSum}{SubsetSum}
+\newlang{\TSP}{TSP}
+\newlang{\Knapsack}{Knapsack}
+
+\newcommand{\ccP}{\textsf{P}}
+
+\newcommand{\NPComplete}{\NP\text{-Complete}}
+\newcommand{\NPHard}{\NP\text{-Hard}}
+
+\newcommand{\hwnum}{8}
+\newcommand{\duedate}{March 27}
+
+\hwheader   % header for homework
+
+% Comment the following line in order to hide solutions.
+% Uncomment the line to show solutions written inside of
+% LaTeX solution environments like:
+%   \begin{solution}
+%     My solution.
+%   \end{solution}.
+\printanswers
+
+\begin{document}
+
+\hwpreface
+
+\pointsinmargin
+\pointpoints{pt}{pts}
+\bonuspointpoints{EC pt}{EC pts}
+\marginpointname{ \points}
+\marginbonuspointname{ \bonuspoints}
+
+\begin{questions}
+  \addtocounter{question}{-1}
+
+  \question[0] \textbf{Before you start; before you submit.}
+  
+  \begin{itemize}
+  \item Read \href{https://drive.google.com/drive/u/1/folders/1fHV5RQgjvt0rWCTYv2EExI0M3cVDyi6G}{Handout 3: $\NP$-Hardness Proofs} to understand the components of such proofs.
+
+  \item If applicable, state the name(s) and uniqname(s) of your collaborator(s).
+    
+    \begin{solution}
+      
+    \end{solution}
+  \end{itemize}
+
+  \question[10] \textbf{Self assessment.}
+  
+  Carefully read and understand the posted solutions to the previous homework.
+  Identify one part for which your own solution has the most room for improvement (e.g., has unsound reasoning, doesn’t show what was required, could be significantly clearer or better organized, etc.).
+  Copy or screenshot this solution, then in a few sentences, explain what was deficient and how it could be fixed.
+
+  (Alternatively, if you think one of your solutions is significantly \emph{better} than the posted one, copy it here and explain why you think it is better.)
+
+  If you didn't turn in the previous homework, then (1)~state that you didn't turn it in, and (2)~pick a problem that you think is particularly challenging from the previous homework, and explain the answer in your own words.
+  You may reference the answer key, but your answer should be in your own words.
+
+  \begin{solution}
+
+  \end{solution}
+  
+  \question \textbf{Review of last week's materials.}
+  
+  \begin{parts}
+    \part[4] Define the terms $\P$, $\NP$, $\NPHard$, and $\NPComplete$.
+    (You do not need to define the terms that are used in these definitions.)
+    
+    \begin{solution}
+      
+    \end{solution}
+
+    \pagebreak
+    
+    \part[8] For each of the following statements, state, with brief justification, that it is \emph{known to be true}, \emph{known to be false}, or its truth/falsehood is \emph{unknown}.
+    Note: as always, if a statement has any counterexample(s), it is false.
+    
+    \begin{enumerate}[(i)]
+    \item Let~$V$ be an efficient verifier for $L \in \NP$ and $x,c$ be strings; if $V(x,c)$ accepts, then $x \in L$.
+    \item Let~$V$ be an efficient verifier for $L \in \NP$ and $x,c$ be strings; if $V(x,c)$ rejects, then $x \notin L$.
+    \item If $\P \neq \NP$ and $L$ is $\NPComplete$, then $L \notin \P$.
+    \item If $L$ is $\NPHard$, then $L \notin \P$.
+    \end{enumerate}
+    
+    \begin{solution}
+      
+    \end{solution}
+    
+    \part[4] Briefly explain what the ``Boolean satisfiability'' ($\SAT$) problem is, and give one example instance that is satisfiable, and one that is unsatisfiable.
+    Each example must include at least 2 variables and at least 3 (not necessarily distinct) logical operators (AND/OR/NOT).
+    
+    \begin{solution}
+        
+    \end{solution}
+    
+    \part[4] Towards proving the Cook-Levin Theorem in lecture, we outlined a proof of the following statement: 
+    \begin{quote}
+      Let language $L \in \NP$ by arbitrary, and fix an efficient verifier $\textsc{VerifyL}$ for~$L$.
+      Given any instance $x$ of $L$, in polynomial time we can construct an instance $\phi$ of $\SAT$ such that $\phi$ is satisfiable \emph{if and only if} there \emph{exists} a $c$ such that the tableau of $\textsc{VerifyL}(x,c)$ has $q_\text{accept}$ in it.
+    \end{quote}
+    Briefly explain why proving this statement proves that SAT is $\NPHard$.
+    
+    \begin{solution}
+      
+    \end{solution}
+  \end{parts}
+
+  \question[10] \textbf{Turing reductions vs.\ poly-time mapping reductions.}
+  
+  Suppose that $\P \neq \NP$, and let $A \in \P$ be arbitrary.
+  Prove that there is a \emph{Turing} reduction from $\SAT$ to $A$ (i.e., $\SAT \leq_T A$), but there is \emph{no polynomial-time mapping reduction} from $\SAT$ to~$A$.
+  (i.e., $\SAT \not\leq_p A$).
+  
+  \begin{solution}
+    
+  \end{solution}
+
+  \pagebreak
+
+  \question \textbf{Subset sum.}\label{ques:subsetsum}
+
+  Consider the following reduction involving $\TSAT$ and the language
+  \[ \SubsetSum = \set{(A, s) : A \text{ is a \emph{multiset} of integers $\geq 0$, and } \exists\; I \subseteq A \text{ such that } \sum_{a \in I} a = s}.
+  \]
+  A \href{https://en.wikipedia.org/wiki/Multiset}{\emph{multiset}}~$A$ is just like a set, but it can have duplicate elements.
+  A submultiset $I \subseteq A$ also can have duplicate elements, as long as it does not have more copies of an particular element than~$A$ does.\footnote{In class we defined a slightly different version of $\SubsetSum$ with ordinary sets instead of multisets.
+  With a little more work, the version with ordinary sets can also be proved $\NPComplete$.}
+
+  The reduction is given a 3CNF formula~$\varphi$ with~$n$ variables $x_1, \ldots, x_n$ and $m$ clauses $c_1, \ldots, c_m$.
+  We assume without loss of generality that there is no repeated clause.
+  (Recall that each clause is the OR of exactly three literals, where a literal is either some variable~$x_{i}$ or its negation $\overline{x_{i}}$.)
+
+  The reduction constructs a collection of numbers as follows:
+  \begin{enumerate}
+  \item For each clause $c_j$, it constructs integers $a_j$ and $b_j$, each $n + m$ decimal digits long, where the $j$th digit of both $a_j$ and $b_j$ is 1, and all other digits are 0.
+  \item For each variable $x_i$, it constructs integers $t_i$ and $f_i$, each $n + m$ decimal digits long, where:
+    \begin{enumerate}
+    \item The $(m + i)$th digits of both $t_i$ and $f_i$ are 1.
+    \item The $j$th digit of $t_i$ is 1 if literal $x_i$ appears
+      in clause $c_j$.
+    \item The $j$th digit of $f_i$ is 1 if literal $\overline{x_i}$
+      appears in clause $c_j$.
+    \item All other digits of $t_i$ and $f_i$ are 0.
+    \end{enumerate}
+  \item It constructs a target sum~$s$ that has $n + m$ decimal digits, where the first~$m$ digits are~$3$ and the last~$n$ digits are~$1$.
+  \end{enumerate}
+  The reduction outputs $(A,s)$, where $A$ is the multiset of all the numbers $a_{j}$, $b_{j}$, $t_{i}$, and~$f_{i}$.
+
+  For example, for the formula $\varphi = (x_1 \vee \overline{x_2} \vee x_3) \wedge (\overline{x_1} \vee x_2 \vee \overline{x_3})$, the reduction constructs:
+  \begin{center}
+    \begin{tabular}{| c | c | c | c | c | c |}
+      \hline
+      Number & $j=1$ & $j=2$ & $i=1$ & $i=2$ & $i = 3$ \\ \hline \hline
+      $a_1$ & 1 & 0 & 0 & 0 & 0 \\ \hline
+      $b_1$ & 1 & 0 & 0 & 0 & 0 \\ \hline
+      $a_2$ & 0 & 1 & 0 & 0 & 0 \\ \hline
+      $b_2$ & 0 & 1 & 0 & 0 & 0 \\ \hline \hline
+      $t_1$ & 1 & 0 & 1 & 0 & 0 \\ \hline
+      $f_1$ & 0 & 1 & 1 & 0 & 0 \\ \hline \hline
+      $t_2$ & 0 & 1 & 0 & 1 & 0 \\ \hline
+      $f_2$ & 1 & 0 & 0 & 1 & 0 \\ \hline \hline
+      $t_3$ & 1 & 0 & 0 & 0 & 1 \\ \hline
+      $f_3$ & 0 & 1 & 0 & 0 & 1 \\ \hline \hline
+      $s$   & 3 & 3 & 1 & 1 & 1 \\ \hline
+    \end{tabular}
+  \end{center}
+
+  \pagebreak
+
+  Answer the following:
+  \begin{parts}
+  \part[2] Fill in the blanks: the above reduction is for showing that $\rule{1.5cm}{0.15mm} \leq_p \rule{1.5cm}{0.15mm}$.
+
+    \begin{solution}
+
+    \end{solution}
+    
+  \part[15] Prove that the reduction is correct by proving the following, for any 3CNF formula~$\varphi$:
+    \begin{itemize}
+    \item $\varphi \in \TSAT \implies (A,s) \in \SubsetSum$;
+    \item $(A,s) \in \SubsetSum \implies \varphi \in \TSAT$.
+    \end{itemize}
+
+    \begin{solution}
+      
+    \end{solution}
+    
+  \part[5] Why do we set the first~$m$ digits of~$s$ to be 3?
+    Would the reduction still be correct if we used 2 instead?
+    What about 4?
+    
+    \begin{solution}
+      
+    \end{solution}
+  \end{parts}
+
+  \question[18] \textbf{Tours and cycles.}
+
+  Recall the following definitions (in this problem, all graphs are undirected):
+  \begin{align*}
+    \HamCycle &= \set{ G : G \text{ is an unweighted graph with a Hamiltonian cycle}} \\
+    \TSP &= \set{ (G, k) : G \text{ is a weighted, complete graph with a tour of weight} \leq k }
+           \; \text.
+  \end{align*}
+  Prove that $\HamCycle \leq_p \TSP$.
+  (Recall from lecture and the handout what such a proof involves.)
+  Since $\HamCycle$ is $\NPHard$, is follows that $\TSP$ is also $\NPHard$.
+  
+  \emph{Reminder}: an instance of $\HamCycle$ is an arbitrary unweighted graph, while an instance of $\TSP$ is a \emph{complete} graph where each edge has a weight.
+
+  \begin{solution}
+    
+  \end{solution}
+
+  \question \textbf{More Knapsack!} 
+  
+  Recall the $0$-$1$ knapsack problem: an instance is a list of~$n$ item weights $W = (W_1, W_2, \ldots, W_n)$, their corresponding values $V = (V_1, V_2, \ldots, V_n)$, and a weight capacity~$C$.
+  (All values are non-negative integers.)
+  The goal is to select items having maximum total value, such that their total weight does not exceed the capacity.
+  We can make this a decision problem by introducing a ``budget''~$K$ and asking whether a total value of at least~$K$ can be achieved (again, subject to the capacity constraint):
+  \[ \Knapsack = \set{ (W, V, C, K) : \exists\; S\subseteq \set{1,\ldots,n} \text{ such that } \sum_{i\in S} W_{i} \leq C \text{ and } \sum_{i\in S} V_{i} \geq K }.
+  \]
+
+  \pagebreak
+
+  \begin{parts}
+    \part[14] Prove that $\Knapsack$ is $\NPHard$, by showing that $\SubsetSum \leq_p \Knapsack$.
+    (See Question~\ref{ques:subsetsum} for the definition of $\SubsetSum$.)
+
+    \begin{solution}
+      
+    \end{solution}
+
+    \part[6] Recall that we previously gave a dynamic programming algorithm that solves $\Knapsack$ in $O(nC)$ time.
+    Does this prove that $\P = \NP$?
+    Why or why not?
+
+    \begin{solution}
+      
+    \end{solution}
+  \end{parts}
+
+  \bonusquestion[8] \textbf{Optional extra-credit question: Network reliability.}
+
+  The Republic of Alvonia owns the internal internet infrastructure for the country and leases out connections to Internet Service Providers (ISPs).
+  We represent that network as an undirected graph.
+  Assume that each edge in the graph has a positive integer \emph{rental cost} associated with it.
+  An ISP is confronted with the problem of spending the minimum amount of money on link rental so that it can provide adequately reliable service to its customers.
+    
+  Here is how we quantify reliability: We say that two paths in the network are \emph{disjoint} if they have no vertices in common, except for possibly their endpoints.
+  For example, there can be two disjoint paths from vertex $v_{42}$ to $v_{100}$, but $v_{42}$ and $v_{100}$ can be the only vertices that these paths have in common (since these vertices are the endpoints of the paths).
+  In the interest of reliability, it is desirable to have multiple disjoint paths between pairs of nodes in the network.
+  Some ISPs provide more reliability than others, but they may charge their clients more.
+
+  The Network Reliability Optimization Problem (NROP) is now defined as follows. An instance is an undirected graph with $n$ vertices $v_{1}, \dots, v_{n}$, a non-negative integer weight on each edge, and an $n$-by-$n$ symmetric matrix $R_{ij}$.
+  The objective is to find a subset~$S$ of the edges such that the total cost of the edges in~$S$ is minimized, with the requirement that for every pair of vertices $v_i$ and $v_j$, there are at least $R_{ij}$ disjoint paths from $v_{i}$ to $v_{j}$ such that all paths use only edges in~$S$.
+
+  You've been hired as a summer intern to develop an efficient algorithm for solving NROP.
+  After working on an algorithm for awhile, your team conjectures that the problem is NP-hard.
+  Here is your task:
+  \begin{enumerate}
+  \item Define the decision version of this problem, which we will call NRDP;
+  \item Prove that NRDP is NP-hard via a reduction from an NP-hard problem from lecture.
+  \end{enumerate}
+
+  \begin{solution}
+    
+  \end{solution}
+
+\end{questions}
+
+\end{document}
