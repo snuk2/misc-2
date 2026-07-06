@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="EECS 479">
+  <meta name="keywords"
+    content="EECS479, EECS 479, Introduction to Quantum Computing, University of Michigan Computer Science">
+  <title>EECS 479</title>
+  <link rel="shortcut icon" type="image/x-icon" href="assets/images/eecs498favicon.ico">
+
+  <!-- Fomantic UI CSS library
+       https://fomantic-ui.com/introduction/getting-started.html#using-a-cdn-provider -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.js"></script>
+
+  <!-- FullCalendar JS library
+       https://fullcalendar.io/docs
+       https://fullcalendar.io/docs/google-calendar  -->
+  <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.css' rel='stylesheet' />
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.js'></script>
+
+  <!-- Custom icons -->
+  <link href='assets/css/customfontpack.css' rel='stylesheet' />
+  <link href='assets/css/style.css' rel='stylesheet' />
+
+  <!-- Custom color coding for schedule of topics
+       https://fomantic-ui.com/usage/theming.html#sitewide-defaults
+  -->
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <!-- Nav bar on left side -->
+  <div class="ui left vertical inverted sidebar menu labeled icon" style="background: #4C0099;">
+
+    <!-- Logo and Course Title -->
+    <div class="item">
+      <a class="ui logo icon image mini" href="#">
+        <img src="assets/images/eecs498logo.png" alt="logo">
+      </a>
+      <br>
+      <br>
+      <a href="#"><b>EECS 479</b></a>
+    </div>
+
+    <!-- Internal links -->
+    <div class="item">
+      <div class="menu">
+        <a class="item" href="#resources">
+          Resources
+        </a>
+        <a class="item" href="#schedule">
+          Schedule
+        </a>
+        <a class="item" href="#people">
+          People
+        </a>
+      </div>
+    </div><!-- Internal links -->
+
+    <!-- External links -->
+    <div class="menu">
+      <a class="item" href="https://edstem.org/us/courses/72122/">
+        <i class="icon-ed big"></i><br>
+        Ed
+      </a>
+      <a class="item" href="https://leccap.engin.umich.edu/leccap/site/w4qtfp4vy2z8dvd7tsm">
+        <i class="play icon big"></i><br>
+        Lecture<br>
+        Recordings
+      </a>
+      <a class="item" href="https://drive.google.com/drive/u/1/folders/1aBiu6z9ixnqB9IEqLihSS_2pY1MLKfnK">
+        <i class="google drive icon big"></i><br>
+        Files
+      </a>
+      <a class="item" href="https://eecsoh.eecs.umich.edu/queues/2E0qUYNyokhBJDS8UmJpUuzyquD">
+        <i class="help circle icon big"></i><br>
+        Office Hours
+      </a>
+      <a class="item" href="https://autograder.io/web/course/314">
+        <i class="upload icon big"></i><br>
+        Autograder
+      </a>
+      <a class="item" href="https://www.gradescope.com/courses/943392">
+        <i class="icon-gradescope big"></i> <br>
+        Gradescope
+      </a>
+    </div><!-- External links -->
+
+  </div><!-- Nav bar -->
+
+
+  <!-- Main page  -->
+  <div class="pusher">
+    <div class="ui text container">
+      <button class="ui right floated icon button" id="left-sidebar-toggle">
+        <i class="bars icon"></i>
+      </button>
+
+      <h1>EECS 479: Introduction to Quantum Computing</h1>
+      <div class="inline">
+        <i>The University of Michigan</i>
+        <div class="ui blue label">Winter 2025</div>
+      </div>
+      <br />
+      <p>
+        A pratical approach towards exploring how each layer of the computing stack is impacted by quantum computing.
+        Build a quantum circuit simulator, a constraint solver using quantum algorithms, and a protocol for
+        fault-tolerant quantum computation.
+      </p>
+      <p>
+        <b><a href="https://docs.google.com/document/d/1-iMjXIIMjo3cWtoZQellQUdEy2rJS4lrZW_SHDp4hzk/edit?tab=t.0"
+            target="_blank">Syllabus</a></b>
+      </p>
+
+      <!-- Announcements -->
+      <!-- <div class="ui info message"> -->
+      <!-- <div class="header"> -->
+      <!-- Announcement -->
+      <!-- </div> -->
+      <!-- <p> -->
+      <!-- Welcome to EECS 498-001! Our first lecture will meet on Wed, 1/10. Labs will not meet until 1/18. -->
+      <!-- </p> -->
+      <!-- </div> -->
+
+
+      <!-- Template announcement DO NOT REMOVE
+      <div class="ui info message">
+        <div class="header">
+          FIXME title
+        </div>
+        <p>
+          FIXME content
+        </p>
+      </div>
+      -->
+
+      <!-- Announcement Box
+      <div class="ui info message">
+
+      </div>
+      -->
+
+      <!-- Divider between announcements and This Week -->
+      <div class="ui section divider"></div>
+
+      <!-- This Week section -->
+      <h2 id="thisweek">This Week</h2>
+      <div class="ui three stackable cards">
+
+        <div class="ui card">
+          <div class="content" style="flex-grow: 0;">
+            <img class="right floated rounded mini ui image" src="assets/headshots/jbbeau.jpg"
+              alt="Jon Beaumont head shot">
+            <div class="header">Beaumont</div>
+          </div>
+          <div class="content">
+            <div class="ui feed">
+              <div class="event">
+                <div class="content">
+                  <div class="summary">
+                    Lecture<br />
+                    <a class="ui basic blue icon label"
+                      href="https://drive.google.com/drive/u/1/folders/1eR1JulKZvfqgYYjRJdsHqli2jlJnGUfF">
+                      <i class="file pdf icon"></i> Slides
+                    </a>
+                    <a class="ui basic blue icon label"
+                      href="https://leccap.engin.umich.edu/leccap/site/w4qtfp4vy2z8dvd7tsm" target="_blank">
+                      <i class="play icon"></i> Recordings
+                    </a>
+                    <a class="ui basic blue icon label"
+                      href="https://nexus.hosted.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID=%224a3fd273-e188-4202-bccc-b268012b93c6%22&sortColumn=1&sortAscending=true" target="_blank">
+                      <i class="play icon"></i>Studio Recordings
+                    </a>
+                  </div>
+                  <div class="meta">
+                    <div class="list">
+                      <div class="item">
+                        <i class="calendar icon"></i>
+                        Tue, Thu 12:00 in EECS 1500
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- / event -->
+              <div class="event">
+                <div class="content">
+                  <div class="summary">
+                    Office Hours
+                  </div>
+                  <div class="meta">
+                    <div class="list">
+                      <div class="item">
+                        <i class="calendar icon"></i>
+						Mon 1:30-2:30 3828 BBB<br>
+                        Tue, Thu 1:30-2:00 2901 BBB<br>
+						Wed 12-1 Zoom</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- / event -->
+            </div>
+          </div>
+        </div><!-- / ui card -->
+
+        <div class="ui card">
+          <div class="content" style="flex-grow: 0;">
+            <div class="header">Labs</div>
+          </div>
+          <div class="content">
+            <div class="ui feed">
+              <div class="event">
+                <div class="content">
+                  <div class="summary">
+                    <a class="ui basic blue icon label"
+                      href="https://drive.google.com/drive/u/1/folders/1DpdPj7XgvVtN3ZXn5K-tjU-4_wElphPX">
+                      <i class="file pdf icon"></i> Drive
+                    </a>
+                     <a class="ui basic blue icon label"
+                      href="https://leccap.engin.umich.edu/leccap/site/vokk6hdmqvbufclpncn" target="_blank">
+                     <i class="play icon"></i> Recordings
+                     </a>
+                  </div>
+                  <div class="meta">
+                    <div class="list">
+                      <div class="item">
+                        <i class="calendar icon"></i>
+                        Fri 12:30-2:30 in EECS 1005
+                        <i class="calendar icon"></i>
+                        Fri 3:30-5:30 in FXB 1012
+                        <!--For some reason semanticCSS removes margin-right on last element of the list so I create a fake element to consume that rule-->
+                        <i class="calendar icon" style="display: none"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- / event -->
+            </div>
+          </div>
+        </div><!-- / ui card -->
+
+
+
+      </div><!-- /ui three cards -->
+      <p>All times are listed as Ann Arbor local time (ET)</p>
+      <div class="ui section hidden divider"></div>
+
+
+      <!--
+           Google Calendar
+
+           The FullCalendar JS library inserts a Google Calendar here.  See
+           the JavaScript source code at the end of this file.  Remember to
+           update the 'googleCalendarId' found in the JavaScript code.
+      -->
+      <div id="calendar"></div>
+      <p>
+        <a href="https://calendar.google.com/calendar/embed?src=c_4u9ponn7vngrodfquoultctah4%40group.calendar.google.com&ctz=America%2FDetroit"
+          target="_blank">
+          Open calendar in new window
+        </a>
+      </p>
+      <div class="ui section divider"></div>
+
+      <!-- People section -->
+      <h2 id="people">People</h2>
+      <!--<p>Reach us at <a href="mailto:eecs485staff@umich.edu">eecs485staff@umich.edu</a></p> -->
+      <div class="ui three stackable cards">
+
+        <div class="ui fluid card">
+          <div class="image">
+            <img src="assets/headshots/jbbeau.jpg" alt="Jon Beaumont head shot" />
+          </div>
+          <div class="content">
+            <div class="header">
+              Jon Beaumont
+            </div>
+            <div class="description">
+              <p><i class="icon envelope"></i>jbbeau@umich.edu</p>
+            </div>
+          </div>
+          <div class="extra content">
+            <span data-tooltip="Windows"><i class="icon windows"></i></span>
+            <span data-tooltip="VSCode"><i class="icon-vscode"></i></span>
+            <span data-tooltip="Hometown: Troy, MI"><i class="icon map pin"></i></span>
+          </div>
+          <div class="extra content">
+            <span data-tooltip="Triathlons">
+              <img src="assets/images/running.jpg" alt="VS" height="14" style="margin-bottom: 3px;">
+            </span>
+            <span data-tooltip="Making Neapolitan pizza from scratch">
+              <img src="assets/images/pizza.jpg" alt="VS" height="14" style="margin-bottom: 3px;">
+            </span>
+          </div>
+        </div><!-- /fluid card -->
+
+        <div class="ui fluid card">
+          <div class="image">
+            <img src="assets/headshots/waning.jpg" alt="Wayne He head shot" />
+          </div>
+          <div class="content">
+            <div class="header">
+              Wayne He
+            </div>
+            <div class="description">
+              <p><i class="icon envelope"></i>waning@umich.edu</p>
+            </div>
+          </div>
+          <div class="extra content">
+            <span data-tooltip="Windows"><i class="icon windows"></i></span>
+            <span data-tooltip="MacOS"><i class="icon apple"></i></span>
+            <span data-tooltip="Linux"><i class="icon linux"></i></span>
+            <span data-tooltip="VSCode"><i class="icon-vscode"></i></span>
+            <span data-tooltip="(Neo)vim"><i class="icon-vim"></i></span>
+            <span data-tooltip="Hometown: Grand Rapids, MI"><i class="icon map pin"></i></span>
+          </div>
+          <div class="extra content">
+            <span data-tooltip="I play modern Tetris competitively!">
+              🕹️
+            </span>
+            <span data-tooltip="Cardistry and Magic">
+              🃏
+            </span>
+          </div>
+        </div><!-- /fluid card -->
+
+        <div class="ui fluid card">
+          <div class="image">
+            <img src="assets/headshots/qifwang.jpg" alt="Qifa Wang head shot" />
+          </div>
+          <div class="content">
+            <div class="header">
+              Qifa Wang
+            </div>
+            <div class="description">
+              <p><i class="icon envelope"></i>qifwang@umich.edu</p>
+            </div>
+          </div>
+          <div class="extra content">
+            <span data-tooltip="Windows"><i class="icon windows"></i></span>
+            <span data-tooltip="MacOS"><i class="icon apple"></i></span>
+            <span data-tooltip="Linux"><i class="icon linux"></i></span>
+            <span data-tooltip="VSCode"><i class="icon-vscode"></i></span>
+            <span data-tooltip="Hometown: Lexington, MA"><i class="icon map pin"></i></span>
+          </div>
+          <div class="extra content">
+            <span data-tooltip="Fencing">
+              🤺
+            </span>
+            <span data-tooltip="Tennis">
+              🎾
+            </span>
+            <span data-tooltip="Skiing">
+              ⛷️
+            </span>
+          </div>
+        </div><!-- /fluid card -->
+
+
+        <div class="ui section divider"></div>
+        <h2 id="admin-forms" class="first">Administrative Requests</h2>
+        <p>Please use the forms linked below to make administrative requests. .</p>
+        <div class="ui three stackable cards">
+
+
+
+          <a class="ui raised card"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSeg7J5nyhQ15oiOUVdUb3ovjBLvgrUDK1EEvP34m6-birxSIA/viewform">
+            <div class="content">
+              <!-- <div class="header" style="color: gray;"> -->
+              <div class="header" style="color: #4183c4;">
+                <span>
+                  Alternate Exam
+                </span>
+              </div>
+              <div class="description">
+                <p>Report an exam conflict and request an alternate date/time</p>
+              </div>
+            </div>
+          </a>
+
+
+
+          <a class="ui raised card"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSfDsOiqZN96J8Vczzk10Uxl96DLSxIHgpzedNomYfuYDufsAA/viewform">
+            <div class="content">
+              <!-- <div class="header" style="color: gray;"> -->
+              <div class="header" style="color: #4183c4;">
+                <span>
+                  Assignment Extension Request
+                </span>
+              </div>
+              <div class="description">
+                <p>Request an assignment extension (e.g. due to a medical or personal emergency).</p>
+              </div>
+            </div>
+          </a>
+
+
+
+
+
+        </div>
+
+
+
+      </div><!-- ui stackable cards -->
+      <div class="ui section divider"></div>
+      <div class="ui hidden section divider"></div>
+
+      <!-- Assignments section -->
+      <h2 id="Assignments">Assignments</h2>
+      <div class="ui three stackable cards">
+
+        <a class="ui raised card"  href="https://drive.google.com/drive/u/1/folders/1-zDAkz5qb6-k2_qOhvzTZoNnG8BCpHdt">
+        <div class="content">
+        <div class="right aligned floating ui green label">
+        Due Thu (2/27)
+        </div>
+        <div class="header">
+        <p>Lab 5</p>
+        </div>
+        </div>
+        </a>
+
+
+        <a class="ui raised card"  href="https://drive.google.com/drive/u/1/folders/1QQPgWhOCjOodN04RcE_BoO6jLaaelWyg">
+        <div class="content">
+        <div class="right aligned floating ui green label">
+        Due Fri (3/21)
+        </div>
+        <div class="header">
+        <p>Homework 4</p>
+        </div>
+        </div>
+        </a>
+
+        <a class="ui raised card"  href="https://drive.google.com/drive/u/1/folders/1lcwQ9T4ZFSOpx2PcVPYuu_afxYBiPQBn">
+        <div class="content">
+        <div class="right aligned floating ui green label">
+        Checkpoint 2 Tue (3/18)
+        </div>
+        <div class="header">
+        <p>Project 2</p>
+        </div>
+        </div>
+        </a>
+
+
+      </div>
+
+      <!-- Tutorials section -->
+      <h2 id="resources">Resources</h2>
+      <div class="ui three stackable cards">
+        <a class="ui raised card"
+          href="https://colab.research.google.com/drive/1jH_fT7Gs7qGWKtL24tHE4n4MJEvWFnwy?authuser=0" target="_blank">
+          <div class="content">
+            <div class="header">
+              Python Quick Reference
+            </div>
+          </div>
+        </a>
+
+        <a class="ui raised card"
+          href="https://colab.research.google.com/drive/1d2aoZ8dtNXiBz1Crt-Oc8WLzTryhSm2I?authuser=0" target="_blank">
+          <div class="content">
+            <div class="header">
+              NumPy Quick Reference
+            </div>
+          </div>
+        </a>
+
+        <a class="ui raised card"
+          href="https://blochm.waning.dev/" target="_blank">
+        <div class="right aligned floating ui blue label">
+        Credit: Wayne He
+        </div>
+          <div class="content">
+            <div class="header">
+              Bloch M - Interactive Qubit
+            </div>
+          </div>
+        </a>
+
+        <a class="ui raised card"
+          href="https://quantum.ibm.com/composer" target="_blank">
+          <div class="content">
+            <div class="header">
+              IBM Quantum Composer
+            </div>
+          </div>
+        </a>
+
+
+      </div>
+
+      <div class="ui section divider"></div>
+
+      <!-- Schedule section -->
+      <h2 id="schedule">Schedule</h2>
+
+      <table class="ui unstackable celled table" style="border-collapse: collapse; font-size:90%;">
+        <tbody>
+
+          <tr>
+            <td style="width: 14%"><b>Day</b></td>
+            <td style="width: 25%"><b>Lecture Topic</b></td>
+            <td style="width: 12%"><b>Lab Topic</b></td>
+            <td style="width: 19%"><b>Deadline</b></td>
+            <td style="width: 30%"><b>Reading</b></td>
+            <td style="width: 30%"><b>Studio Recording</b></td>
+          </tr>
+          <tr style="border-top: solid 2px #555;">
+            <td style="position: relative;"><span class="ui left floating blue label">Week 1</span><span
+                class="schedule-day">Thu 1/9</span></td>
+            <td><span class="schedule-lecture">Class intro</span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><a href="https://nexus.hosted.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID=%224bfbd5bd-0d80-42ff-9945-b26d01487fe5%22">Link</a></td>
+          </tr>
+          <tr>
+            <td><span class="schedule-day">Fri 1/10</span></td>
+            <td><span class="schedule-lecture"></td>
+            <td><span class="schedule-lab">[No lab]</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr style="border-top: solid 2px #555;">
+            <td style="position: relative;"><span class="ui left floating blue label">Week 2</span><span
+                class="schedule-day">Tue 1/14</span></td>
+            <td><span class="schedule-lecture">Math Primer I</span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><a href="https://nexus.hosted.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID=%2209d82c69-925c-4cfb-9757-b26d0148882a%22">Link</a></td>
+          </tr>
+          <tr>
+            <td><span class="schedule-day">Thu 1/16</span></td>
+            <td><span class="schedule-lecture">Math Primer II</span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><a href="https://nexus.hosted.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID=%22552b6839-3e83-4f02-b318-b26d01489692%22">Link</a></td>
+          </tr>
+          <tr>
+            <td><span class="schedule-day">Fri 1/17</span></td>
+            <td><span class="schedule-lecture"></td>
+            <td><span class="schedule-lab">Intro to Python / NumPy</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr style="border-top: solid 2px #555;">
+            <td style="position: relative;"><span class="ui left floating blue label">Week 3</span><span
+                class="schedule-day">Tue 1/21</span></td>
+            <td><span class="schedule-lecture">Qubits</span></td>
+            <td></td>
+            <td></td>
+			<td><a href="https://learning.quantum.ibm.com/course/basics-of-quantum-information/single-systems" target="_blank">Single Systems</a></td>
+            <td><a href="https://nexus.hosted.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID=%229a538995-e792-4871-b432-b27201308c47%22">Link</a></td>
+          </tr>
+          <tr>
+            <td><span class="schedule-day">Thu 1/23</span></td>
+            <td><span class="schedule-lecture">Quantum Gates</span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><a href="https://nexus.hosted.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID=%2235ddf786-de3a-4126-9cec-b27401286e05%22">Link</a></td>
+          </tr>
+          <tr>
+            <td><span class="schedule-day">Fri 1/24</span></td>
+            <td><span class="schedule-lecture"></td>
+            <td><span class="schedule-lab">Qiskit Overview</td>
+            <td class="red">HW 1</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr style="border-top: solid 2px #555;">
+            <td style="position: relative;"><span class="ui left floating blue label">Week 4</span><span
+                class="schedule-day">Tue 1/28</span></td>
+            <td><span class="schedule-lecture">Multi-qubits</span></td>
+            <td></td>
+            <td class="red">Mini-Project</td>
+            <td><a href="https://learning.quantum.ibm.com/course/basics-of-quantum-information/multiple-systems" target="_blank">Multiple Systems</a></td>
+            <td><a href="https://nexus.hosted.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID=%2226a835a1-47c9-4ac0-9cbf-b27b013c95f9%22">Link</a></td>
+          </tr>
+          <tr>
+            <td><span class="schedule-day">Thu 1/30</span></td>
+            <td><span class="schedule-lecture">Phase Kickback</span></td>
+            <td></td>
+            <td></td>
+            <td><a href="https://github.com/Qiskit/textbook/blob/main/notebooks/ch-gates/phase-kickback.ipynb" target="_blank">Phase Kickback</a></td>
+            <td><a href="https://nexus.hosted.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID=%22443e5abb-715a-4422-9548-b28100e8dab0%22">Link</a></td>
+          </tr>
+          <tr>
+            <td><span class="schedule-day">Fri 1/31</span></td>
+            <td><span class="schedule-lecture"></td>
+            <td><span class="schedule-lab">Using Phase Kickback</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr style="border-top: solid 2px #555;">
+            <td style="position: relative;"><span class="ui left floating blue label">Week 5</span><span
+                class="schedule-day">Tue 2/04</span></td>
+            <td><span class="schedule-lecture">Quantum Algorithms</span></td>
+            <td></td>
+            <td></td>
+            <td><a href="https://learning.quantum.ibm.com/course/basics-of-quantum-information/entanglement-in-action" target="_blank">Entanglement</a>,<br>
+            <a href="https://learning.quantum.ibm.com/course/fundamentals-of-quantum-algorithms/quantum-query-algorithms" target="_blank">Algorithms</a>
+			</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="schedule-day">Thu 2/06</span></td>
+            <td><span class="schedule-lecture">Deutsch Problem</span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><a href="https://nexus.hosted.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID=%22eb712577-ee40-421f-8523-b28100e8e1fc%22">Link</a></td>
+          </tr>
+          <tr>
+            <td><span class="schedule-day">Fri 2/07</span></td>
+            <td><span class="schedule-lecture"></td>
+            <td><span class="schedule-lab">Exam Review</td>
+            <td class="red">HW 2</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr style="border-top: solid 2px #555;">
+            <td style="position: relative;"><span class="ui left floating blue label">Week 6</span><span
+                class="schedule-day">Tue 2/11</span></td>
+            <td><span class="schedule-lecture"><b>Exam 1: 7-9 pm</b></span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="schedule-day">Thu 2/13</span></td>
+            <td><span class="schedule-lecture">Deutsch-Jozsa Algorithm</span></td>
+            <td></td>
+            <td class="red">P1</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="schedule-day">Fri 2/14</span></td>
+            <td><span class="schedule-lecture"></td>
+            <td><span class="schedule-lab">Designing Oracles</td>
+            <td></td>
+            <td></td>
+            <td><a href="https://nexus.hosted.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID=%224ec97ce1-a621-48ca-a730-b284011c4d6f%22">Link</a></td>
+          </tr>
+          <tr style="border-top: solid 2px #555;">
+            <td style="position: relative;"><span class="ui left floating blue label">Week 7</span><span
+                class="schedule-day">Tue 2/18</span></td>
+            <td><span class="schedule-lecture">Grover’s Algorithm I</span></td>
+            <td></td>
+            <td></td>
+            <td><a href="https://learning.quantum.ibm.com/course/fundamentals-of-quantum-algorithms/grovers-algorithm" target="_blank">Grover's Algorithm</a></td>
+            <td><a href="https://nexus.hosted.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID=%22dd9be32f-068b-45f0-b176-b28a0101ba0a%22">Link</a></td>
+          </tr>
+          <tr>
+            <td><span class="schedule-day">Thu 2/20</span></td>
+            <td><span class="schedule-lecture">Grover’s Algorithm II</span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><a href="https://nexus.hosted.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID=%22d727dcc4-8964-402e-8e2a-b28b012ed09a%22">Link</a></td>
+          </tr>
+          <tr>
+            <td><span class="schedule-day">Fri 2/21</span></td>
+            <td><span class="schedule-lecture"></td>
+            <td><span class="schedule-lab">Grover's Algorithm</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr style="border-top: solid 2px #555;">
+            <td style="position: relative;"><span class="ui left floating blue label">Week 8</span><span
+                class="schedule-day">Tue 2/25</span></td>
+            <td><span class="schedule-lecture">Quantum Fourier Transform</span></td>
+            <td></td>
+            <td></td>
+            <td><a href="https://learning.quantum.ibm.com/course/fundamentals-of-quantum-algorithms/phase-estimation-and-factoring#quantum-fourier-transform" target="_blank">QFT</a></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="schedule-day">Thu 2/27</span></td>
+            <td><span class="schedule-lecture">[No lecture]</span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="schedule-day">Fri 2/28</span></td>
+            <td><span class="schedule-lecture"></td>
+            <td><span class="schedule-lab">[No lab]</td>
+            <td class="red">HW 3</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr style="border-top: solid 2px #555;">
+            <td style="position: relative;"><span class="ui left floating blue label">Week 9</span><span
+                class="schedule-day">Tue 3/04</span></td>
+            <td><span class="schedule-lecture"><b><i>Spring Break</i></b></span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="schedule-day">Thu 3/06</span></td>
+            <td><span class="schedule-lecture"><b><i>Spring Break</i></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="schedule-day">Fri 3/07</span></td>
+            <td><span class="schedule-lecture"></td>
+            <td><span class="schedule-lab"><b>[No lab]</b></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr style="border-top: solid 2px #555;">
+            <td style="position: relative;"><span class="ui left floating blue label">Week 10</span><span
+                class="schedule-day">Tue 3/11</span></td>
+            <td><span class="schedule-lecture">Quantum Phase Estimation</span></td>
+            <td></td>
+            <td class="red">P2 Checkpoint 1</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="schedule-day">Thu 3/13</span></td>
+            <td><span class="schedule-lecture">Quantum Counting</span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="schedule-day">Fri 3/14</span></td>
+            <td><span class="schedule-lecture"></td>
+            <td><span class="schedule-lab">Phase Estimation</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr style="border-top: solid 2px #555;">
+            <td style="position: relative;"><span class="ui left floating blue label">Week 11</span><span
+                class="schedule-day">Tue 3/18</span></td>
+            <td><span class="schedule-lecture">Shor's Algorithm</span></td>
+            <td></td>
+            <td class="red">
+              P2 Checkpoint 2<br />
+            </td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="schedule-day">Thu 3/20</span></td>
+            <td><span class="schedule-lecture">Quantum Architectures</span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="schedule-day">Fri 3/21</span></td>
+            <td><span class="schedule-lecture"></td>
+            <td><span class="schedule-lab">Exam Review</td>
+            <td class="red">HW 4</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr style="border-top: solid 2px #555;">
+            <td style="position: relative;"><span class="ui left floating blue label">Week 12</span><span
+                class="schedule-day">Tue 3/25</span></td>
+            <td><span class="schedule-lecture"><b>Exam 2: 7-9 pm</b></span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="schedule-day">Thu 3/27</span></td>
+            <td><span class="schedule-lecture">Error Correction</span></td>
+            <td></td>
+            <td class="red">P2</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="schedule-day">Fri 3/28</span></td>
+            <td><span class="schedule-lecture"></td>
+            <td><span class="schedule-lab">Shor's Algorithm</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr style="border-top: solid 2px #555;">
+            <td style="position: relative;"><span class="ui left floating blue label">Week 13</span><span
+                class="schedule-day">Tue 4/01</span></td>
+            <td><span class="schedule-lecture">Shor Code</span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="schedule-day">Thu 4/03</span></td>
+            <td><span class="schedule-lecture">Steane Code I</span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="schedule-day">Fri 4/04</span></td>
+            <td><span class="schedule-lecture"></td>
+            <td><span class="schedule-lab">Error Correction</td>
+            <td class="red">HW 5</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr style="border-top: solid 2px #555;">
+            <td style="position: relative;"><span class="ui left floating blue label">Week 14</span><span
+                class="schedule-day">Tue 4/08</span></td>
+            <td><span class="schedule-lecture">Steane Code II</span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="schedule-day">Thu 4/10</span></td>
+            <td><span class="schedule-lecture">Fault Tolerant Computing I</span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="schedule-day">Fri 4/11</span></td>
+            <td><span class="schedule-lecture"></td>
+            <td><span class="schedule-lab">Benchmarking Hardware</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr style="border-top: solid 2px #555;">
+            <td style="position: relative;"><span class="ui left floating blue label">Week 15</span><span
+                class="schedule-day">Tue 4/15</span></td>
+            <td><span class="schedule-lecture">Fault Tolerant Computing II</span></td>
+            <td></td>
+            <td class="red">P3 Checkpoint</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="schedule-day">Thu 4/17</span></td>
+            <td><span class="schedule-lecture">[slack]</span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="schedule-day">Fri 4/18</span></td>
+            <td><span class="schedule-lecture"></td>
+            <td><span class="schedule-lab">TBA</td>
+            <td class="red">HW 6</td>
+            <td></td>
+          </tr>
+          <tr style="border-top: solid 2px #555;">
+            <td style="position: relative;"><span class="ui left floating blue label">Week 16</span><span
+                class="schedule-day">Tue 4/22</span></td>
+            <td><span class="schedule-lecture">[slack]</span></td>
+            <td></td>
+            <td class="red">
+              P3<br />
+            </td>
+            <td></td>
+            <td></td>
+          </tr>
+
+          <tr style="border-top: solid 2px #555;">
+            <td style="position: relative;"><span class="ui left floating blue label">Finals Week</span><span
+                class="schedule-day">Tue 4/29</span></td>
+            <td><span class="schedule-lecture"><b>Final Exam 8-10 am</b></span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+
+
+
+        </tbody>
+      </table>
+
+      <div class="ui section divider"></div>
+      <!-- Schedule section -->
+
+
+
+    </div><!-- ui text container -->
+  </div>
+
+  <footer>
+    <div class="ui inverted menu">
+    </div>
+  </footer>
+
+
+  <script>
+    // Sidebar show and hide logic.
+    //
+    // On large screens, show the sidebar by default.  On small screens, hide it.
+    (function () {
+      renderSidebar();
+    })();
+
+    function isSmallScreen() {
+      return screen.width < 900;
+    }
+
+    function renderSidebar() {
+      $sidebar = $('.ui.sidebar');
+      $sidebar.sidebar({
+        dimPage: false,
+        transition: 'overlay',
+        mobileTransition: 'overlay',
+        exclusive: false,
+        closable: false
+      });
+      $sidebar.sidebar('attach events', '#left-sidebar-toggle');
+      if (!isSmallScreen()) {
+        $sidebar.sidebar('toggle');
+      }
+    }
+  </script>
+
+  <script>
+    // Insert Google Calendar in <div id="calendar">
+    //
+    // REMINDER: update googleCalendarId each semester
+    //
+    // Uses the FullCalendar library and connects to Google Calendar
+    // https://fullcalendar.io/docs
+    // https://fullcalendar.io/docs/google-calendar
+    document.addEventListener('DOMContentLoaded', function () {
+      var calendarEl = document.getElementById('calendar');
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        // Google Calendar API, DO NOT CHANGE
+        // https://fullcalendar.io/docs/google-calendar
+        googleCalendarApiKey: 'AIzaSyAiEWXOLNCeznI7k6r0-taknkWGh0rcRwU',
+
+        // Google Calendar ID CHANGE THIS EACH SEMESTER
+        events: {
+          googleCalendarId: 'c_4u9ponn7vngrodfquoultctah4@group.calendar.google.com',
+        },
+
+        // Tool bar options.  Hide "today" button on mobile to save space.
+        // https://fullcalendar.io/docs/headerToolbar
+        headerToolbar: {
+          end: isSmallScreen() ? 'prev,next' : 'today prev,next',
+        },
+
+        // View options
+        // https://fullcalendar.io/docs/timegrid-view
+        initialView: isSmallScreen() ? 'timeGridDay' : 'timeGridWeek',
+        allDaySlot: true,
+        nowIndicator: true,
+        scrollTime: "08:00:00",
+
+        // Selectively recolor calendar events
+        // https://fullcalendar.io/docs/event-render-hooks
+        eventContent: recolorCalendarEvent,
+
+        // Add click-for-popup to calendar events
+        // https://fullcalendar.io/docs/event-render-hooks
+        eventDidMount: addPopup,
+
+        aspectRatio: isSmallScreen() ? .75 : 1.35,
+      });
+      calendar.render();
+    });
+
+    function recolorCalendarEvent(arg) {
+      // Change calendar event colors based on string prefix
+      var color_basil = 'rgb(57, 125, 73)';
+      var color_cornflowerblue = 'rgb(100, 149, 237)';
+      var color_blueberry = 'rgb(64, 84, 175)';
+      var color_saddlebrown = 'rgb(119, 33, 32)';
+      var color_darkseagreen = 'rgb(143, 188, 143)';
+      if (
+        arg.event.title.toLowerCase().includes('due') ||
+        arg.event.title.toLowerCase().includes('deadline') ||
+        arg.event.title.toLowerCase().includes('exam')
+      ) {
+        arg.backgroundColor = color_saddlebrown;
+        arg.borderColor = color_saddlebrown;
+      }
+      else if (arg.event.title.toLowerCase().includes('lecture')) {
+        arg.backgroundColor = color_darkseagreen;
+        arg.borderColor = color_darkseagreen;
+      }
+      else if (arg.event.title.toLowerCase().includes('lab')) {
+        arg.backgroundColor = color_basil;
+        arg.borderColor = color_basil;
+      }
+      else if (arg.event.title.toLowerCase().includes('proffice hours')) {
+        arg.backgroundColor = color_blueberry;
+        arg.borderColor = color_blueberry;
+      }
+      else if (arg.event.title.toLowerCase().includes('office hours')) {
+        arg.backgroundColor = color_cornflowerblue;
+        arg.borderColor = color_cornflowerblue;
+      }
+
+    }
+
+    function addPopup(arg) {
+      // Add a popup to a calendar event
+      //
+      // arg.event.extendedProps contains extra information from the Google
+      // Calendar event, e.g., description and location.
+      var element = arg.el;
+      var location = arg.event.extendedProps.location || '';
+      var description = arg.event.extendedProps.description || '';
+
+      // Remove link to Google Calendar automatically added by FullCalendar
+      $(element).removeAttr('href');
+
+      // Add Popup to DOM, links in the location field are clickable
+      // https://semantic-ui.com/modules/popup.html#/usage
+      //
+      // NOTE: overflow:scroll avoids text spilling out of the popup on iOS.
+      if (location.toLowerCase().startsWith('http')) {
+        var location_html = `<a href="${location}" target="_blank">${location}</a>`;
+      } else {
+        var location_html = `${location}<br>${description}`;
+      }
+      $(element).popup({
+        on: 'click',
+        html: `
+         <div class="header">${arg.event.title}</div>
+         <div class="content" style="overflow:auto">${location_html}</div>
+       `,
+      });
+    }
+  </script>
+
+</body>
+
+</html>
